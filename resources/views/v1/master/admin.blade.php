@@ -39,8 +39,8 @@
             <!-- end menu -->
 
             <!-- content -->
-            <div class="col-md-9 col-lg-9 col-sm-12 parent-wrapper" style="border:5px solid red">
-                <div class="container-fluid">
+            <div class="col-md-9 col-lg-9 col-sm-12 parent-wrapper">
+                <div class="container-fluid content-wrapper">
                     @yield('content')
                 </div>
             </div>
