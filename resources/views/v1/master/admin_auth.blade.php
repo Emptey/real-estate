@@ -28,7 +28,7 @@
     <title>@yield('title')</title>
 </head>
 <body>
-    <div class="container-fluid">
+    <div class="container-fluid" id="login-div">
         @yield('content')
     </div>
 

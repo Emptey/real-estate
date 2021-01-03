@@ -21,7 +21,8 @@ class AdminLoginController extends Controller
 
         // authentication
         if (\Auth::attempt(['email' => $request->email, 'password' => $request->password, 'is_active' => 1, 'is_staff' => 1])) {
-                return 'Authenticated';
+                return redirect()
+                        ->route('get-dashboard');
         } else {
             // authentication failed
             $notification = [
@@ -35,6 +36,13 @@ class AdminLoginController extends Controller
 
         }
 
+    }
+
+    // logout
+    public function logout() {
+        \Auth::logout();  // destroying session
+        return redirect()
+                ->route('admin-login');
     }
 }
     

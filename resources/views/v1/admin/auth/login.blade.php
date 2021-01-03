@@ -14,7 +14,7 @@
                 <div class="col-md-6 col-lg-6 col-sm-12" id="login-div-left">
                     <div class="admin-login-link-container">
                         <a href="#" class="admin-login-link admin-login-link-active">Login</a>
-                        <a href="#" class="admin-login-link">Password </a>
+                        <a href="#" class="admin-login-link">2FA </a>
                     </div>
 
                     <div style="margin: 15% auto;">

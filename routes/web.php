@@ -32,10 +32,15 @@ Route::group(['prefix' => 'authenticator'], function(){
     ]);
 
     // admin authorization routes
-    Route::group(['prefix' => 'authorized'], function() {
+    Route::group(['prefix' => 'authorized', 'middleware' => 'admin_auth'], function() {
         Route::get('/', [
             'as' => 'get-dashboard',
-            'uses' => 'AdminDashboardController',
+            'uses' => 'AdminDashboardController@index',
+        ]);
+
+        Route::get('logout', [
+            'as' => 'admin-logout',
+            'uses' => 'AdminLoginController@logout',
         ]);
     });
 });

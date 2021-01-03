@@ -26,21 +26,23 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
     <!-- END JS -->
 
-    <title>yield('title')</title>
+    <title>@yield('title')</title>
 </head>
 <body>
     
-    <div class="container-fluid">
-        <div class="row">
+    <div class="container-fluid" style="height:100%; background-color:white">
+        <div class="row" style="height:100%">
             <!-- menu -->
-            <div class="col-md-3 col-lg-3 col-sm-12">
-                <admin-navigation />
+            <div class="col-md-2 col-lg-2 col-sm-12 nav-container">
+                <x-admin-navigation />
             </div>
             <!-- end menu -->
 
             <!-- content -->
-            <div class="col-md-9 col-lg-9 col-sm-12">
-                @yield('content')
+            <div class="col-md-9 col-lg-9 col-sm-12 parent-wrapper" style="border:5px solid red">
+                <div class="container-fluid">
+                    @yield('content')
+                </div>
             </div>
             <!-- end content -->
 
