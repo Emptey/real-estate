@@ -10,4 +10,14 @@ class Investment extends Model
     public function property_listing() {
         return $this->belongsTo('App/PropertyListing');
     }
+
+    // relationship btw investment and user investment
+    public function user_investment() {
+        return $this->hasMany('App\UserInvestment');
+    }
+
+    // relationship btw investment and rent payout
+    public function rent_payout() {
+        return $this->hasMany('App\RentPayout');
+    }
 }

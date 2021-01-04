@@ -51,4 +51,14 @@ class User extends Authenticatable
     public function notification() {
         return $this->hasMany('App\Notification');
     }
+
+    // relationshit btw user and user investment
+    public function user_investment() {
+        return $this->hasMany('App\UserInvestment');
+    }
+
+    // relationship btw user and rent payout
+    public function rent_payout() {
+        return $this->hasMany('App\RentPayout');
+    }
 }
