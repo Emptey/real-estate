@@ -20,4 +20,9 @@ class Investment extends Model
     public function rent_payout() {
         return $this->hasMany('App\RentPayout');
     }
+
+    // relationship btw investment and sell off payout
+    public function sell_off_payout() {
+        return $this->hasMany('App\SellOffPayout');
+    }
 }
