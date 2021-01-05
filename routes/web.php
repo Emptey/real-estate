@@ -31,6 +31,18 @@ Route::group(['prefix' => 'authenticator'], function(){
         'uses' => 'AdminLoginController@postLogin',
     ]);
 
+    // admin get 2fa
+    Route::get('/2fa-verification', [
+        'as' => 'get-admin-2fa',
+        'uses' => 'AdminLoginController@get_two_fa',
+    ]);
+
+    // admin post 2fa
+    Route::post('/2fa-verification', [
+        'as' => 'post-admin-2fa',
+        'uses' => 'AdminLoginController@post_two_fa',
+    ]);
+
     // admin authorization routes
     Route::group(['prefix' => 'authorized', 'middleware' => 'admin_auth'], function() {
         Route::get('/', [

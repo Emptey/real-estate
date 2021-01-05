@@ -58,7 +58,7 @@ label {
 #login-div-right {
     background-color: #fff;
     margin:0 auto;  
-    padding: 10% 3% 10%;
+    padding: 5% 3% 10%;
     border-top-right-radius: 5px;
     border-bottom-right-radius:5px;
 }
@@ -72,7 +72,7 @@ label {
 #login-div-left:before{
     content: "";
     /* background-image: url('../img/house.jpeg'); */
-    background-color: rgb(24, 23, 23);
+    background-color: #2774AE;
     background-size: cover;
     background-repeat: no-repeat;
     position: absolute;
@@ -80,7 +80,7 @@ label {
     right: 0px;
     bottom: 0px;
     left: 0px;
-    opacity: 0.95;
+    /* opacity: 0.95; */
     border-top-left-radius: 5px;
     border-bottom-left-radius:5px;
 }
@@ -94,7 +94,7 @@ a.admin-login-link {
     position: relative;
     font-size: 16pt;
     display: block;
-    color: #696969;
+    color: #b3d4ec;
     text-align: center !important;
     text-decoration: none;
     margin-top: 15%;
@@ -109,7 +109,7 @@ a.admin-login-link {
     /* box-shadow: -6px -6px 10px rgba(255, 255, 255, 0.6),
     -6px -6px 10px rgba(0, 0, 0, 0.2); */
     background-color: #fff;
-    color: #007FFF;
+    color: #2774AE;
   }
 
   /* nav header */

@@ -15,7 +15,8 @@ class AdminAuthentication
      */
     public function handle($request, Closure $next)
     {
-        if (!\Auth::check()) {
+        $two_fa = $request->session()->get('two_fa');
+        if (!\Auth::check() || $two_fa != 1) {
             // loggout user
             \Auth::logout();
             return redirect()->route('admin-login');

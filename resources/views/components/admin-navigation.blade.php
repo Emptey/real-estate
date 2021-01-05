@@ -19,6 +19,6 @@
 
     <div class="fixed-bottom bottom-menu">
         <a href="#" class="bottom-link"> <i class="fa fa-cog"></i> Settings</a>
-        <a href="#" class="bottom-link"> <i class="fa fa-sign-out"></i> Logout</a>
+        <a href="{{ route('admin-logout') }}" class="bottom-link"> <i class="fa fa-sign-out"></i> Logout</a>
     </div>
 </div>
