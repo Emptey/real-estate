@@ -20,12 +20,12 @@ class CreateInvestmentsTable extends Migration
             $table->unsignedBigInteger('avail_slot');
             $table->decimal('amount_per_slot', 8, 2);
             $table->date('first_rent_payment_date')->nullable();
-            $table->date('second_rent_payment_date')->nullable();
+            $table->date('next_rent_payment_date')->nullable();
             $table->date('last_rent_payment_date')->nullable();
             $table->date('sell_off_payment_date');
             $table->date('expiry_date');
             $table->boolean('is_rented', 1)->default(0);
-            $table->boolean('is_filed', 1)->default(0);
+            $table->boolean('is_filled', 1)->default(0);
             $table->boolean('is_complete', 1)->default(0);
             $table->boolean('is_active', 1)->default(1);
             $table->timestamps();

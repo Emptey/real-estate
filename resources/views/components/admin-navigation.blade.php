@@ -2,7 +2,7 @@
     <!-- The only way to do great work is to love what you do. - Steve Jobs -->
     <div class="header text-center">
         <header>
-            <h1>Logo</h1>
+            <h1 style="color: #fff">Logo</h1>
         </header>
     </div>
 

@@ -196,15 +196,16 @@ a.admin-login-link {
   /* title */
   .title {
       font-size: 16pt;
-      font-weight: 400;
-      color: rgb(109, 103, 103);
+      font-weight: 500;
+      color:rgb(144,144,144);
       border-bottom:1px solid rgba(59, 56, 56, 0.2);
       padding-bottom: 0.9%;
   }
 
-  .title>i {
-      font-weight: bolder;
+  /* investment overview titles */
+  .overview-title {
       font-size: 14pt;
-      color: rgb(109, 103, 103);
-      cursor: pointer;
+      font-weight: normal;
+      color: rgb(117, 112, 112);
+      margin-bottom: 0.2%;
   }

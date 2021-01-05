@@ -4,8 +4,9 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-12 col-lg-12 col-sm-12 text-right no-padding">
-            <a href="#" class="btn btn-info btn-lg">
+        <div class="col-md-12 col-lg-12 col-sm-12  no-padding">
+            <h3 class="float-left"> <i class="fa fa-home"></i> Dashboard</h3>
+            <a href="#" class="btn btn-info btn-lg float-right">
                 Report 
                 <i class="fa fa-download"></i>
             </a>
@@ -16,28 +17,89 @@
         <div class="col-md-8 col-lg-8 col-sm-12 no-padding-left">
             <div class=" shadow mb-5 rounded" style="padding:1.1%">
                 <h3 class="title">
-                    Investment chart 
-                    <i class="float-right fa fa-times"></i> 
+                    Recent investment transactions 
                 </h3>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br><br>
+                
+                <div>
+                    <canvas id="myChart" width="400" height="155"></canvas>
+                    
+                    <script>
+                        var chart_labels = [];
+                        var chart_data = [];
+                        @foreach($user_investment as $month=> $transaction)
+                            chart_labels.push('{!! substr($month, 0, 7) !!}');
+                            chart_data.push('{!! $transaction->count() !!}');
+                        @endforeach
+                        var ctx = document.getElementById('myChart').getContext('2d');
+                        var myChart = new Chart(ctx, {
+                            type: 'line',
+                            data: {
+                                labels: chart_labels,
+                                datasets: [{
+                                    label: 'No of transactions by month',
+                                    data: chart_data,
+                                    backgroundColor: [
+                                        'rgba(255, 99, 132, 0.2)',
+                                        'rgba(54, 162, 235, 0.2)',
+                                        'rgba(255, 206, 86, 0.2)',
+                                        'rgba(75, 192, 192, 0.2)',
+                                        'rgba(153, 102, 255, 0.2)',
+                                        'rgba(255, 159, 64, 0.2)'
+                                    ],
+                                
+                                }]
+                            },
+                        
+                        });
+
+                    </script>
+
+                </div>
             </div>
         </div>
         
         <div class="col-md-4 col-lg-4 col-sm-12 no-padding">
             <div class="shadow mb-5 rounded medium-div-spacing">
                 <h3 class="title">
-                    Completed investment 
-                    <i class="float-right fa fa-times"></i> 
+                    Investment overview
                 </h3>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br><br>
+
+                <div style="margin-top:7%">
+                    <p class="overview-title">1000 properties listed</p>
+                    <div class="progress" style="box-shadow: -6px -6px 10px rgba(255, 255, 255, 0.8),
+                                            6px 6px 10px rgba(0, 0, 0, 0.2);">
+                        <div class="progress-bar progress-bar-striped bg-info" role="progressbar" 
+                            style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+
+                <div style="margin-top:7%">
+                    <p class="overview-title">100 active investments</p>
+                    <div class="progress" style="box-shadow: -6px -6px 10px rgba(255, 255, 255, 0.8),
+                                            6px 6px 10px rgba(0, 0, 0, 0.2);">
+                        <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" 
+                            style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 7%">
+                    <p class="overview-title">800 completed</p>
+                    <div class="progress" style="box-shadow: -6px -6px 10px rgba(255, 255, 255, 0.8),
+                                                6px 6px 10px rgba(0, 0, 0, 0.2);">
+                        <div class="progress-bar progress-bar-striped bg-success" role="progressbar" 
+                            style="width: 44%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 7%; margin-bottom: 7%">
+                    <p class="overview-title">200 rented properties</p>
+                    <div class="progress" style="box-shadow: -6px -6px 10px rgba(255, 255, 255, 0.8),
+                                            6px 6px 10px rgba(0, 0, 0, 0.2);">
+                        <div class="progress-bar progress-bar-striped" role="progressbar" 
+                            style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -46,17 +108,10 @@
         <div class="col-md-12 col-lg-12 col-sm-12 shadow mb-5 rounded div-space">
             <h3 class="title">
                 User registration rate 
-                <i class="float-right fa fa-times"></i> 
             </h3>
-            <br><br><br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
+            <div>
+                {!! $chart1->renderHtml() !!}
+            </div>
         </div>
     </div>
 
@@ -79,4 +134,9 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('javascript')
+{!! $chart1->renderChartJsLibrary() !!}
+{!! $chart1->renderJs() !!}
 @endsection
