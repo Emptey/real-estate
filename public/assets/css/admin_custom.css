@@ -8,6 +8,11 @@ body {
     font-size: 14pt;
 }
 
+/* block dislay */
+.display-block {
+    display: block;
+}
+
 /* login-wrapper div */
 #login-div {
     background-image: url('../img/background.jpg');
@@ -35,12 +40,20 @@ body {
 /* end toastr */
 
 /* wrappers */
+.first-content-row {
+    margin-top:1.5%;
+}
+
 .parent-wrapper {
     margin:2% auto;
 }
 
 .content-wrapper {
     width: 92% !important;
+}
+
+.big-wrapper {
+    padding: 2%;
 }
 
 /* label */

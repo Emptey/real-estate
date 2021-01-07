@@ -51,11 +51,30 @@ Route::group(['prefix' => 'authenticator'], function(){
             'uses' => 'AdminDashboardController@index',
         ]);
 
-        // user management routes
+        /* user management routes */
         Route::get('/user', [
             'as' => 'get-admin-user-mgnt',
             'uses' => 'AdminUserManagementController@index',
         ]);
+
+        // search user
+        Route::post('/user', [
+            'as' => 'search-user',
+            'uses' => 'AdminUserManagementController@searchUser',
+        ]);
+
+        // add user
+        Route::get('/user/add', [
+            'as' => 'add-user',
+            'uses' => 'AdminUserManagementController@getAddUser',
+        ])->middleware('adduser');
+
+        // disable/enable user
+        Route::get('/user/status/{id}', [
+            'as' => 'change-user-status',
+            'uses' => 'AdminUserManagementController@changeUserStatus'
+        ]);
+        /* end user management routes */
 
         // logout route
         Route::get('logout', [

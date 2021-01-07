@@ -8,8 +8,8 @@
 
     <div class="x1-5-margin-top menu-container">
         <nav class="nav flex-column">
-            <a class="{{ Route::is('get-dashboard') ? 'active animate__animated animate__fadeIn animate__fast' : '#' }}" href="{{ route('get-dashboard') }}"> <i class="fa fa-tachometer"></i> Dashboard </a>
-            <a class="{{ Route::is('get-admin-user-mgnt') ? 'active animate__animated animate__fadeIn animate__fast' : '#' }}" href="{{ route('get-admin-user-mgnt') }}"> <i class="fa fa-users"></i> User Management </a>
+            <a class="{{ Route::is('get-dashboard') ? 'active animate__animated animate__fadeIn animate__delay-1s' : '#' }}" href="{{ route('get-dashboard') }}"> <i class="fa fa-tachometer"></i> Dashboard </a>
+            <a class="{{ Route::is('get-admin-user-mgnt') || Route::is('search-user') || Route::is('add-user') ? 'active animate__animated animate__fadeIn animate__delay-1st' : '#' }}" href="{{ route('get-admin-user-mgnt') }}"> <i class="fa fa-users"></i> User Management </a>
             <a class="#" href="#"> <i class="fa fa-building-o"></i> Property Listing</a>
             <a class="#" href="#"> <i class="fa fa-chart-pie"></i> Investment Management</a>
             <a class="#" href="#"> <i class="fa fa-coins"></i> Payment</a>

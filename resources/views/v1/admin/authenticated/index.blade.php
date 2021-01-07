@@ -6,14 +6,14 @@
     <div class="row">
         <div class="col-md-12 col-lg-12 col-sm-12  no-padding">
             <h4 class="float-left"> <i class="fa fa-home"></i> Dashboard</h4>
-            <a href="#" class="btn btn-light btn-lg float-right">
+            <a href="#" class="btn btn-warning text-dark btn-md float-right">
                 Report 
                 <i class="fa fa-download"></i>
             </a>
         </div>
     </div>
     
-    <div class="row" style="margin-top:1.5%;">
+    <div class="row first-content-row">
         <div class="col-md-8 col-lg-8 col-sm-12 no-padding-left">
             <div class=" shadow mb-5 rounded" style="padding:1.1%">
                 <h3 class="title">

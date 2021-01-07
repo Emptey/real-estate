@@ -36,13 +36,13 @@
     <div class="container-fluid" style="height:100%; background-color:white">
         <div class="row" style="height:100%">
             <!-- menu -->
-            <div class="col-md-2 col-lg-2 col-sm-12 nav-container fixed-top" style="height: 100% !important">
+            <div class="col-md-2 col-lg-2 col-sm-12 nav-container fixed-top animate__animated animate__fadeIn animate__fast" style="height: 100% !important">
                 <x-admin-navigation />
             </div>
             <!-- end menu -->
 
             <!-- content -->
-            <div class="col-md-9 col-lg-9 col-sm-12 parent-wrapper" style="margin-left: 20%">
+            <div class="col-md-9 col-lg-9 col-sm-12 parent-wrapper animate__animated animate__fadeIn animate__delay-1s" style="margin-left: 20%">
                 <div class="container-fluid content-wrapper">
                     @yield('content')
                 </div>
