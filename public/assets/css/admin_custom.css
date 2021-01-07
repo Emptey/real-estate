@@ -40,7 +40,7 @@ body {
 }
 
 .content-wrapper {
-    width: 90% !important;
+    width: 92% !important;
 }
 
 /* label */
@@ -114,7 +114,7 @@ a.admin-login-link {
 
   /* nav header */
   .header {
-      margin-top: 3%;
+      margin-top: 10%;
   }
 
   /* admin menu */
@@ -139,8 +139,8 @@ a.admin-login-link {
       border-top-left-radius: 360px;
       border-bottom-left-radius: 360px;
       color: #b3d4ec;
-      font-size: 13pt;
-      transition: ease-in color .4s;
+      font-size: 14pt;
+      transition:  ease-in color .4s;
   }
 
   .menu-container>nav>a:hover {
@@ -152,10 +152,12 @@ a.admin-login-link {
       background-color: #fff;
       color: #2774AE;
       font-weight: 700;
+      box-shadow: -6px -6px 10px  rgba(0, 0, 0, 0.2),
+      inset 0px 0px 10px rgba(255, 255, 255, 0.6);
   }
 
   .menu-container>nav>a>i {
-      padding-right: 10%;
+      padding-right: 3%;
       margin-left: 3%;
   }
 
@@ -193,6 +195,46 @@ a.admin-login-link {
     padding-left: 0;
   }
 
+  .x1-padding {
+      padding: 1%;
+  }
+
+  .x2-padding {
+      padding: 2%;
+  }
+
+  .x3-padding {
+      padding: 3%;
+  }
+
+  .x4-padding {
+      padding: 4%;
+  }
+
+  .x5-padding {
+      padding: 5%;
+  }
+
+  .x6-padding {
+      padding: 6%;
+  }
+
+  .x7-padding {
+      padding: 7%;
+  }
+
+  .x8-padding {
+      padding: 8%;
+  }
+
+  .x9-padding {
+      padding: 9%;
+  }
+
+  .x10-padding {
+      padding: 10%;
+  }
+
   /* title */
   .title {
       font-size: 16pt;
@@ -208,4 +250,65 @@ a.admin-login-link {
       font-weight: normal;
       color: rgb(117, 112, 112);
       margin-bottom: 0.2%;
+  }
+
+  /* name initial circle */
+  .initial-1 {
+    display: inline-block;
+    align-items: center;
+    text-align: center;
+    background-color: rgb(40, 116, 175); 
+    color: rgb(250, 245, 245);
+    border-radius:200px; 
+    height: 30px;
+    width:30px;
+  }
+
+  .initial-2 {
+    display: inline-block;
+    align-items: center;
+    text-align: center;
+    background-color: rgb(40, 175, 63); 
+    color: rgb(250, 245, 245);
+    border-radius:200px; 
+    height: 30px;
+    width:30px;
+  }
+
+  .initial-3 {
+    display: inline-block;
+    align-items: center;
+    text-align: center;
+    background-color: rgb(175, 40, 168); 
+    color: rgb(250, 245, 245);
+    border-radius:200px; 
+    height: 30px;
+    width:30px;
+  }
+
+  .initial-4 {
+    display: inline-block;
+    align-items: center;
+    text-align: center;
+    background-color: rgb(175, 40, 63); 
+    color: rgb(250, 245, 245);
+    border-radius:200px; 
+    height: 30px;
+    width:30px;
+  }
+
+  .initial-5 {
+    display: inline-block;
+    align-items: center;
+    text-align: center;
+    background-color:  rgb(175, 105, 40);
+    color: rgb(250, 245, 245);
+    border-radius:200px; 
+    height: 30px;
+    width:30px;
+  }
+
+  /* border */
+  .border-bottom {
+      border-bottom: 1px solid rgb(144,144,144);
   }

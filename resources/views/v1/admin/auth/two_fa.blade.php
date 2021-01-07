@@ -1,6 +1,6 @@
 @extends('v1.master.admin_auth')
 
-@section('title', 'Admin login')
+@section('title', '2FA')
 
 @section('content')
     <!-- <div class="col-md-12 col-lg-12 col-sm-12" style="background-color:gree">

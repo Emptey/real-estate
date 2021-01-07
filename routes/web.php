@@ -45,11 +45,19 @@ Route::group(['prefix' => 'authenticator'], function(){
 
     // admin authorization routes
     Route::group(['prefix' => 'authorized', 'middleware' => 'admin_auth'], function() {
+        // admin dashboard route
         Route::get('/', [
             'as' => 'get-dashboard',
             'uses' => 'AdminDashboardController@index',
         ]);
 
+        // user management routes
+        Route::get('/user', [
+            'as' => 'get-admin-user-mgnt',
+            'uses' => 'AdminUserManagementController@index',
+        ]);
+
+        // logout route
         Route::get('logout', [
             'as' => 'admin-logout',
             'uses' => 'AdminLoginController@logout',

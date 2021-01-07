@@ -5,8 +5,8 @@
 @section('content')
     <div class="row">
         <div class="col-md-12 col-lg-12 col-sm-12  no-padding">
-            <h3 class="float-left"> <i class="fa fa-home"></i> Dashboard</h3>
-            <a href="#" class="btn btn-info btn-lg float-right">
+            <h4 class="float-left"> <i class="fa fa-home"></i> Dashboard</h4>
+            <a href="#" class="btn btn-light btn-lg float-right">
                 Report 
                 <i class="fa fa-download"></i>
             </a>
@@ -59,13 +59,13 @@
         </div>
         
         <div class="col-md-4 col-lg-4 col-sm-12 no-padding">
-            <div class="shadow mb-5 rounded medium-div-spacing">
+            <div class="shadow mb-5 rounded medium-div-spacing x5-padding">
                 <h3 class="title">
                     Investment overview
                 </h3>
 
-                <div style="margin-top:7%">
-                    <p class="overview-title">1000 properties listed</p>
+                <div style="margin-top:4%">
+                    <p class="overview-title"> {!! $listed_properties !!} properties listed</p>
                     <div class="progress" style="box-shadow: -6px -6px 10px rgba(255, 255, 255, 0.8),
                                             6px 6px 10px rgba(0, 0, 0, 0.2);">
                         <div class="progress-bar progress-bar-striped bg-info" role="progressbar" 
@@ -74,7 +74,7 @@
                 </div>
 
                 <div style="margin-top:7%">
-                    <p class="overview-title">100 active investments</p>
+                    <p class="overview-title"> {!! $active_investment !!} active investments</p>
                     <div class="progress" style="box-shadow: -6px -6px 10px rgba(255, 255, 255, 0.8),
                                             6px 6px 10px rgba(0, 0, 0, 0.2);">
                         <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" 
@@ -83,7 +83,7 @@
                 </div>
 
                 <div style="margin-top: 7%">
-                    <p class="overview-title">800 completed</p>
+                    <p class="overview-title"> {!! $completed_investment !!} completed investment</p>
                     <div class="progress" style="box-shadow: -6px -6px 10px rgba(255, 255, 255, 0.8),
                                                 6px 6px 10px rgba(0, 0, 0, 0.2);">
                         <div class="progress-bar progress-bar-striped bg-success" role="progressbar" 
@@ -91,8 +91,8 @@
                     </div>
                 </div>
 
-                <div style="margin-top: 7%; margin-bottom: 7%">
-                    <p class="overview-title">200 rented properties</p>
+                <div style="margin-top: 7%; margin-bottom: 8.5%">
+                    <p class="overview-title">{!! $rented_properties !!} rented properties</p>
                     <div class="progress" style="box-shadow: -6px -6px 10px rgba(255, 255, 255, 0.8),
                                             6px 6px 10px rgba(0, 0, 0, 0.2);">
                         <div class="progress-bar progress-bar-striped" role="progressbar" 
@@ -110,26 +110,52 @@
                 User registration rate 
             </h3>
             <div>
+               
                 {!! $chart1->renderHtml() !!}
             </div>
         </div>
     </div>
 
     <div class="row">
-        <div class="col-md-6 col-lg-6 col-sm-12 no-padding-left">
+    <div class="col-md-6 col-lg-6 col-sm-12 no-padding-left">
             <div class="shadow mb-5 rounded medium-div-spacing">
-               <h3 class="title">
-                   Total transactions
-                   <i class="float-right fa fa-times"></i>
+                <h3 class="title">
+                    Recent investors
                 </h3>
+
+                <div class="table-responsive">
+                        <table class="table table-stripped table-hover  table-borderless">
+                            <tbody>
+                                @foreach($recent_investors as $new_investors)
+                                    <tr class="border-bottom">
+                                        <td>
+                                            <p style="margin:1%">
+                                                <span class="{!! app('App\Http\Controllers\Helper')::generate_initial_style() !!}"> 
+                                                    {!! ucfirst(substr($new_investors->user->full_name, 0, 1)) !!} 
+                                                </span>
+                                                {!! ucwords($new_investors->user->full_name) !!}
+                                            </p>
+                                        </td>
+
+                                        <td>
+                                            #{!! number_format($new_investors->amount, 2) !!}
+                                        </td>
+
+                                        <td>
+                                            {!! substr($new_investors->created_at, 0, 10) !!}
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                </div>
             </div>
         </div>
 
         <div class="col-md-6 col-lg-6 col-sm-12 no-padding">
-            <div class=" shadow mb-5 rounded medium-div-spacing">
-                <h3 class="title">
-                    Recent investors
-                    <i class="float-right fa fa-times"></i>
+            <div class="shadow mb-5 rounded medium-div-spacing">
+               <h3 class="title">
+                   Total transactions
                 </h3>
             </div>
         </div>

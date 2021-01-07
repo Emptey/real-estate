@@ -6,7 +6,9 @@
 
     <!-- stylesheet -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" 
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="{{ asset('assets/css/admin_custom.css') }}" />
     <!-- end stylesheet -->
 
@@ -34,13 +36,13 @@
     <div class="container-fluid" style="height:100%; background-color:white">
         <div class="row" style="height:100%">
             <!-- menu -->
-            <div class="col-md-2 col-lg-2 col-sm-12 nav-container">
+            <div class="col-md-2 col-lg-2 col-sm-12 nav-container fixed-top" style="height: 100% !important">
                 <x-admin-navigation />
             </div>
             <!-- end menu -->
 
             <!-- content -->
-            <div class="col-md-9 col-lg-9 col-sm-12 parent-wrapper">
+            <div class="col-md-9 col-lg-9 col-sm-12 parent-wrapper" style="margin-left: 20%">
                 <div class="container-fluid content-wrapper">
                     @yield('content')
                 </div>
