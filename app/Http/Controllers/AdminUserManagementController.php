@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use PDF;
 
 class AdminUserManagementController extends Controller
 {
@@ -128,5 +129,11 @@ class AdminUserManagementController extends Controller
     // add user
     public function getAddUser(Request $request) {
         return view('v1.admin.authenticated.user.add');
+    }
+
+    // generate and download all user record
+    public function allUserPdfGenerator(Request $request) {
+        // get all users
+        $users = User::all();
     }
 }
