@@ -127,6 +127,14 @@ class AdminUserManagementController extends Controller
         }
     }
 
+    // view specific user record
+    public function viewUser(Request $request, $id) {
+        // decrypt user id
+        $id = \Crypt::decrypt($id);
+
+        return view('v1.admin.authenticated.user.view');
+    }
+
     // add user
     public function getAddUser(Request $request) {
         return view('v1.admin.authenticated.user.add');

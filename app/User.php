@@ -66,4 +66,9 @@ class User extends Authenticatable
     public function sell_off_payout() {
         return $this->hasMany('App\SellOffPayout');
     }
+
+    // relationship btw user & user activity
+    public function user_activity() {
+        return $this->hasMany('App\UserActivity');
+    }
 }

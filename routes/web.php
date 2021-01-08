@@ -72,6 +72,12 @@ Route::group(['prefix' => 'authenticator'], function(){
             return $pdf->download('all_user_report_'.Carbon::now().'.pdf');
         });
 
+        // view specific record
+        Route::get('/user/view/{id}', [
+            'as' => 'view-user',
+            'uses' => 'AdminUserManagementController@viewUser',
+        ]);
+
         // add user
         Route::get('/user/add', [
             'as' => 'add-user',

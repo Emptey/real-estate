@@ -80,7 +80,7 @@
                                     {!! app('App\Http\Controllers\Helper')->getStatus($user) !!}
                                 </td>
                                 <td class="text-center">
-                                    <a href="" class="btn btn-light">Views</a>
+                                    <a href="{{ route('view-user', \Crypt::encrypt($user->id)) }}" class="btn btn-light">Views</a>
                                     <a href="{{ route('change-user-status', \Crypt::encrypt($user->id)) }}" class="{!! app('App\Http\Controllers\Helper')->getButton($user) !!} text-light"> {!! $user->is_active ? 'Disable' : 'Enable' !!} </a>
                                 </td>
                             </tr>
