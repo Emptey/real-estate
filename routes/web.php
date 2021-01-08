@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Carbon\Carbon;
+use App\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,6 +64,13 @@ Route::group(['prefix' => 'authenticator'], function(){
             'as' => 'search-user',
             'uses' => 'AdminUserManagementController@searchUser',
         ]);
+
+        // generate all user pdf report
+        Route::get('/user/generate/pdf', function() {
+            $user = User::all();
+            $pdf = PDF::loadView('v1.admin.pdfs.all_users_record', ['users' => $user]);
+            return $pdf->download('all_user_report_'.Carbon::now().'.pdf');
+        });
 
         // add user
         Route::get('/user/add', [

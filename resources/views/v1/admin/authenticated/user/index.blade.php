@@ -11,7 +11,7 @@
                 </div>
 
                 <div class="col-md-6 text-right">
-                    <a href="#" class="btn btn-warning btn-md text-dark" style="display:inline-block; margin-left: 5%">
+                    <a href="/authenticator/authorized/user/generate/pdf" class="btn btn-warning btn-md text-dark" style="display:inline-block; margin-left: 5%">
                         Export
                         <i class="fa fa-file-pdf"></i>
                     </a>
