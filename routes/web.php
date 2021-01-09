@@ -89,6 +89,11 @@ Route::group(['prefix' => 'authenticator'], function(){
             'uses' => 'AdminUserManagementController@getAddUser',
         ])->middleware('adduser');
 
+        Route::post('/user/add', [
+            'as' => 'post-add-user',
+            'uses' => 'AdminUserManagementController@postAddUser',
+        ])->middleware('adduser');
+
         // disable/enable user
         Route::get('/user/status/{id}', [
             'as' => 'change-user-status',

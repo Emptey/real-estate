@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\UserActivity;
+use App\Gender;
 use Carbon\Carbon;
 use PDF;
 
@@ -13,7 +14,7 @@ class AdminUserManagementController extends Controller
     // index page
     public function index (Request $request) {
         // get all users
-        $users = User::orderBy('id', 'desc')->paginate(2);
+        $users = User::orderBy('id', 'desc')->paginate(10);
         return view('v1.admin.authenticated.user.index', ['users' => $users]);
     }
 
@@ -166,8 +167,71 @@ class AdminUserManagementController extends Controller
         }
     }
 
-    // add user
+    // get add user
     public function getAddUser(Request $request) {
-        return view('v1.admin.authenticated.user.add');
+        $gender = Gender::all()->where('is_active', 1);
+        return view('v1.admin.authenticated.user.add', ['genders' => $gender]);
+    }
+
+    // post add user
+    public function postAddUser(Request $request) {
+        // validation
+        $this->validate($request, [
+            'full_name' => 'required|regex:/^[a-zA-Z\s]*$/',
+            'email' => 'required|email',
+            'dob' => 'required|date',
+            'gender' => 'required|numeric',
+            'country' => 'required|alpha',
+            'state' => 'required|alpha',
+            'address' => 'required|regex:/^[a-zA-Z\s\0-9]*$/',
+            'password' => 'required|alpha-num',
+            'role' => 'required|alpha',
+        ]);
+
+        // initialize user
+        $user = new User();
+        // add user information
+        $user->full_name = strtolower($request->full_name);
+        $user->email     = strtolower($request->email);
+        $user->dob       = strtolower($request->dob);
+        $user->gender_id = $request->gender;
+        $user->country   = strtolower($request->country);
+        $user->state     = strtolower($request->state);
+        $user->address   = strtolower($request->address);
+        $user->password  = \Hash::make($request->password);
+        $user->is_active = 1;
+        // check the assigned role
+        if ($request->role == 'staff') {
+            $user->is_staff = 1;
+        } elseif($request->role == 'super') {
+            $user->is_staff = 1;
+            $user->is_super = 1;
+        }
+
+        // save user record
+        $save_user = $user->save();
+
+        // check if user record was saved successfully
+        if ($save_user) {
+            // record saved successfully -  notify admin
+            $notification = [
+                'message' => 'User record saved successfully.',
+                'alert-type' => 'success',
+            ];
+
+            return redirect()
+                    ->route('get-admin-user-mgnt')
+                    ->with($notification);
+        } else {
+            // record not saved - notify admin
+            $notification = [
+                'message' => 'An error has occured, kindly try again.',
+                'alert-type' => 'error',
+            ];
+
+            return redirect()
+                    ->back()
+                    ->with($notificationa);
+        }
     }
 }
