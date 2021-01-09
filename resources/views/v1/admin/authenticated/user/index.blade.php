@@ -11,12 +11,12 @@
                 </div>
 
                 <div class="col-md-6 text-right">
-                    <a href="/authenticator/authorized/user/generate/pdf" class="btn btn-warning btn-md text-dark" style="display:inline-block; margin-left: 5%">
+                    <a href="/authenticator/authorized/user/generate/pdf" class="btn btn-warning btn-lg text-dark" style="display:inline-block; margin-left: 5%">
                         Export
                         <i class="fa fa-file-pdf"></i>
                     </a>
 
-                    <a href="{{ route('add-user') }}" class="btn btn-info btn-md text-dark {{ app('App\Http\Controllers\Helper')->superAdminStatus() }} " style="display:inline-block; margin-right: 1% !important">
+                    <a href="{{ route('add-user') }}" class="btn btn-info btn-lg text-dark {{ app('App\Http\Controllers\Helper')->superAdminStatus() }} " style="display:inline-block; margin-right: 1% !important">
                         User
                         <i class="fa fa-plus"></i>
                     </a>
@@ -77,11 +77,14 @@
                                     {!! app('App\Http\Controllers\Helper')::justDate($user->created_at) !!}
                                 </td>
                                 <td class="text-center">
-                                    {!! app('App\Http\Controllers\Helper')->getStatus($user) !!}
+                                    {!! app('App\Http\Controllers\Helper')->getStatus($user) !!} 
                                 </td>
                                 <td class="text-center">
                                     <a href="{{ route('view-user', \Crypt::encrypt($user->id)) }}" class="btn btn-light">Views</a>
-                                    <a href="{{ route('change-user-status', \Crypt::encrypt($user->id)) }}" class="{!! app('App\Http\Controllers\Helper')->getButton($user) !!} text-light"> {!! $user->is_active ? 'Disable' : 'Enable' !!} </a>
+                                    <a href="{{ route('change-user-status', \Crypt::encrypt($user->id)) }}" 
+                                        class="{!! app('App\Http\Controllers\Helper')->getButton($user) !!} text-light"> 
+                                        {!! $user->is_active ? 'Disable' : 'Enable' !!} <i class="fa fa-check-circle"></i>
+                                    </a>
                                 </td>
                             </tr>
                             @endforeach

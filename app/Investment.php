@@ -8,7 +8,7 @@ class Investment extends Model
 {
     // relationship btw investment & property_listing
     public function property_listing() {
-        return $this->belongsTo('App/PropertyListing');
+        return $this->belongsTo('App\PropertyListing');
     }
 
     // relationship btw investment and user investment

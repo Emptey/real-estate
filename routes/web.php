@@ -69,6 +69,11 @@ Route::group(['prefix' => 'authenticator'], function(){
         Route::get('/user/generate/pdf', function() {
             $user = User::all();
             $pdf = PDF::loadView('v1.admin.pdfs.all_users_record', ['users' => $user]);
+            App\UserActivity::create([
+                'user_id' => \Auth::user()->id,
+                'activity' => 'Downloaded users report.'
+            ])->save();
+
             return $pdf->download('all_user_report_'.Carbon::now().'.pdf');
         });
 

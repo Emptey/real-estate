@@ -325,3 +325,15 @@ a.admin-login-link {
   .border-bottom {
       border-bottom: 1px solid rgb(144,144,144);
   }
+
+  /* over writting boostrap default nav-tab active */
+  .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+      color: #2774AE !important;
+      font-weight: bold;
+  }
+
+  a{
+    color: rgb(139, 136, 136);
+    text-decoration: none;
+    background-color: transparent;
+  }

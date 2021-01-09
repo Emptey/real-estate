@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\UserActivity;
 use Carbon\Carbon;
 use PDF;
 
@@ -34,9 +35,14 @@ class AdminUserManagementController extends Controller
 
                 // check if record was updated
                 if ($update_user_record) {
-                    // user record updated - notify admin
+                    // user record updated - record activity and notify admin
+                    UserActivity::create([
+                        'user_id' => \Auth::user()->id,
+                        'activity' => 'Disabled a user.'
+                    ])->save();
+
                     $notification = [
-                        'message' => 'User disabled successfully',
+                        'message' => 'User disabled successfully.',
                         'alert-type' => 'success',
                     ];
 
@@ -64,7 +70,12 @@ class AdminUserManagementController extends Controller
 
                 // check if user record was updated
                 if ($update_user_record) {
-                    // user record updated - notify admin
+                    // user record updated - record activity and notify admin
+                    UserActivity::create([
+                        'user_id' => \Auth::user()->id,
+                        'activity' => 'Enabled a user.'
+                    ])->save();
+
                     $notification = [
                         'message' => 'User enabled successfully.',
                         'alert-type' => 'success',
@@ -132,7 +143,27 @@ class AdminUserManagementController extends Controller
         // decrypt user id
         $id = \Crypt::decrypt($id);
 
-        return view('v1.admin.authenticated.user.view');
+        // get user record
+        $user = User::find($id);
+
+        // get user activity
+        $user_activity = UserActivity::where('user_id', $id)->orderBy('id', 'desc')->limit(6)->get();
+
+        // check if user record exit
+        if ($user->count() > 0) {
+            // user record found.
+            return view('v1.admin.authenticated.user.view', ['user' => $user, 'user_activities' => $user_activity]);
+        } else {
+            // user record not found - notify admin
+            $notification = [
+                'message' => 'User record not found.',
+                'alert-type' => 'error',
+            ];
+
+            return redirect()
+                    ->back()
+                    ->with($notification);
+        }
     }
 
     // add user
