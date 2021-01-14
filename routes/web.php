@@ -101,6 +101,70 @@ Route::group(['prefix' => 'authenticator'], function(){
         ]);
         /* end user management routes */
 
+        /**property lisitng management */
+        Route::group(['prefix' => 'property-listing'], function(){
+            // get index page
+            Route::get('/', [
+                'as' => 'get-property-listing',
+                'uses' => 'PropertyListingController@index',
+            ]);
+
+            // search property
+            Route::post('/', [
+                'as' => 'search-property',
+                'uses' => 'PropertyListingController@searchProperty'
+            ]);
+
+            // change property status
+            Route::get('change/status/{id}', [
+                'as' => 'change-property-status',
+                'uses' => 'PropertyListingController@changeStatus',
+            ]);
+
+            // view specific property
+            Route::get('view/property/{id}', [
+                'as' => 'view-property',
+                'uses' =>'PropertyListingController@viewProperty',
+            ]);
+
+            // get add property page 1
+            Route::get('add/{id?}', [
+                'as' => 'get-add-property',
+                'uses' => 'PropertyListingController@add_property',
+            ]);
+
+            // post add property - first set of details
+            Route::post('add/', [
+                'as' => 'post-add-property-first',
+                'uses' => 'PropertyListingController@set_first_details',
+            ]);
+
+            // get add property page 2
+            Route::get('add/step/2/{id?}', [
+                'as' => 'get-step-two-property',
+                'uses' => 'PropertyListingController@set_second_details',
+            ]);
+
+            // post add property - second set of details
+            Route::post('add/step/2/', [
+                'as' => 'post-add-property-second',
+                'uses' => 'PropertyListingController@post_second_details',
+            ]);
+
+            // get add property page 3
+            Route::get('add/step/3/{id?}', [
+                'as' => 'get-step-three-property',
+                'uses' => 'PropertyListingController@set_third_details',
+            ]);
+
+            // post add property page 3
+            Route::post('add/step/3/', [
+                'as' => 'post-add-property-third',
+                'uses' => 'PropertyListingController@post_third_details',
+            ]);
+        });
+        /** end property listing management */
+
         // logout route
         Route::get('logout', [
             'as' => 'admin-logout',

@@ -28,6 +28,7 @@ class CreatePropertyListingsTable extends Migration
             $table->decimal('sell_off_price', 8, 2);
             $table->unsignedBigInteger('sell_off_profit_percent');
             $table->decimal('rentage_price', 8, 2)->nullable();
+            $table->unsignedBigInteger('rentage_profit_percent')->nullable();
             $table->boolean('is_rentable', 1);
             $table->boolean('is_active', 1)->default(1);
             $table->timestamps();

@@ -23,7 +23,7 @@
     <div class="row">
         <div class="col-md-12 no-padding first-content-row">
             <div class="shadow mb-5 rounded big-wrapper">
-                <h3 class="title">Add user</h3>
+                <!-- <h3 class="title">Add user</h3> -->
 
                 <form action="{{ route('post-add-user') }}" method="post">
                     @csrf

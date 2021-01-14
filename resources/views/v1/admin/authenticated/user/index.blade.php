@@ -32,8 +32,8 @@
                     @csrf
 
                     <div class="input-group" style="width:400px;">
-                        <input type="text" name="search" class="form-control input-lg" id="search" placeholder="search user via email" />
-                        <button type="submit" class="btn btn-primary" style="border-top-right-radius:360px; border-bottom-right-radius:360px">
+                        <input type="text" name="search" class="form-control form-control-lg" id="search" placeholder="search user via email" />
+                        <button type="submit" class="btn btn-search" style="border-top-right-radius:360px; border-bottom-right-radius:360px">
                             <i class="fa fa-search"></i> 
                         </button>
                     </div>

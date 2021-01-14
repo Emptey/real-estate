@@ -131,6 +131,11 @@ a.admin-login-link {
   }
 
   /* admin menu */
+  @keyframes nav-animation {
+    from {color: #fff; transform:translate3d(300%);}
+    to {color: #2774AE; background-color: #fff; transform: translateX(0%);}
+  }
+
   .nav-container {
     background-color:#2774AE; 
     padding: 0
@@ -145,7 +150,6 @@ a.admin-login-link {
 
   .menu-container>nav>a {
       text-decoration: none;
-      color: #fff;
       margin-bottom: 6%;
       padding: 4% 3.5% 4%;
       width: 100% !important;
@@ -162,11 +166,16 @@ a.admin-login-link {
   }
 
   .menu-container>nav>a.active{
-      background-color: #fff;
-      color: #2774AE;
-      font-weight: 700;
-      box-shadow: -6px -6px 10px  rgba(0, 0, 0, 0.2),
-      inset 0px 0px 10px rgba(255, 255, 255, 0.6);
+      animation-name: nav-animation;
+      animation-delay: 1s;
+      animation-duration: 1s;
+      animation-timing-function:step-start;
+      animation-fill-mode: both;
+      /* animation-direction: reverse; */
+      animation-play-state: running;
+      font-weight: normal;
+      /* box-shadow: -6px -6px 10px  rgba(0, 0, 0, 0.2),
+      inset 0px 0px 10px rgba(255, 255, 255, 0.6); */
   }
 
   .menu-container>nav>a>i {
@@ -253,7 +262,7 @@ a.admin-login-link {
       font-size: 16pt;
       font-weight: 500;
       color:rgb(144,144,144);
-      border-bottom:1px solid rgba(59, 56, 56, 0.2);
+      border-bottom:1px solid rgba(168, 160, 160, 0.2);
       padding-bottom: 0.9%;
   }
 
@@ -337,3 +346,58 @@ a.admin-login-link {
     text-decoration: none;
     background-color: transparent;
   }
+
+  /* seach button */
+  .btn-search {
+      background-color: #2774AE;
+      color: #fff;
+  }
+
+  /* modification of boostrap pagination link */
+  .page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color:#2774AE;
+    border-color: #2774AE;
+}
+
+/* textarea */
+textarea {
+    resize: none;
+}
+
+/* property listing counter */
+@keyframes active-tab {
+    from { background-color: rgba(168, 160, 160, 0.2); opacity: 0.7;}
+    to {background-color: #2774AE; opacity: 1; color: #fff; box-shadow: 0 1px 8px 2px rgba(58, 57, 57, 0.36);}
+}
+
+.counter {
+    list-style: none;
+    /* overflow: hidden; */
+    margin-bottom: 2%;
+    padding: 2%;
+}
+
+.counter > li {
+    display: inline-block;
+    background-color: rgba(168, 160, 160, 0.2);
+    opacity: 0.7;
+    margin: 1% 2% 0;
+    height: 30px;
+    width: 30px;
+    align-items: baseline;
+    border-radius: 200px;
+    cursor: pointer;
+}
+
+.counter > li.active {
+    animation-name: active-tab;
+    animation-timing-function: ease-in;
+    animation-delay: 1s;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    
+    /* z-index: -1; */
+    /* transform: translateX(-50%) translateY(-60%); */
+}

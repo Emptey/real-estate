@@ -17,7 +17,9 @@ class CreatePropertyImagesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('property_listing_id');
             $table->foreign('property_listing_id')->references('id')->on('property_listings')->cascade('delete');
-            $table->string('thumbnail');
+            $table->string('front_view');
+            $table->string('side_view')->nullable();
+            $table->string('back_view')->nullable();
             $table->boolean('is_active', 1)->default(1);
             $table->timestamps();
         });
