@@ -410,6 +410,10 @@ textarea {
     height: 50px;
 }
 
+.img-click {
+    cursor: pointer;
+}
+
 .property-title {
     text-decoration:dotted;
 }

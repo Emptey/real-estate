@@ -186,7 +186,7 @@ class PropertyListingController extends Controller
         $this->validate($request, [
             'title' => 'required|regex:/^[a-zA-Z\s]*$/',
             'address' => 'required|regex:/^[a-zA-Z\s\0-9]*$/',
-            'description' => 'required|regex:/^[a-zA-Z\s]*$/',
+            'description' => 'required|regex:/^[a-zA-Z\s\.,]*$/',
             'bedroom' => 'required|numeric',
             'bathroom' => 'required|numeric',
             'toilet' => 'required|numeric',

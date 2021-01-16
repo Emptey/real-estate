@@ -39,14 +39,14 @@
                                     <div class="col-md-12 col-lg-12 col-sm-12">
                                         
                                         <img src="{!! Storage::url('public/images/'.$property->property_images->pluck('front_view')->first()) !!}" alt=""
-                                            class="img img-responsive img-thumbnail" />
+                                            class="img img-responsive img-thumbnail" id="main-img" />
 
                                             <div style="margin-top: 4%; background-color: rgba(200, 200, 200, 0.4); padding: 2% 1% 2%">
                                                 <img src="{!! Storage::url('public/images/'.$property->property_images->pluck('side_view')->first()) !!}" alt=""
-                                                    class="img img-thumbnail" style="display:inline; width: 313px; margin-right: 0.14%"/>
+                                                    class="img img-thumbnail img-click" style="display:inline; width: 313px; height: 250px; margin-right: 0.14%" id="side_image"/>
 
                                                 <img src="{!! Storage::url('public/images/'.$property->property_images->pluck('back_view')->first()) !!}" alt=""
-                                                    class="img img-thumbnail" style="display: inline; width: 313px" />
+                                                    class="img img-thumbnail img-click" style="display: inline; width: 313px; height: 250px;" id="back_image" />
                                             </div>
                                     </div>
                                 </div>
