@@ -162,6 +162,43 @@ Route::group(['prefix' => 'authenticator'], function(){
                 'as' => 'post-add-property-third',
                 'uses' => 'PropertyListingController@post_third_details',
             ]);
+
+            // get update property page 1
+            Route::get('update/{id}', [
+                'as' => 'get-update-property-setp-one',
+                'uses' => 'PropertyListingController@update_property_step_one',
+            ]);
+
+            // post update property page 1
+            Route::post('update/', [
+                'as' => 'post-update-property-step-one',
+                'uses' => 'PropertyListingController@post_update_property_step_one',
+            ]);
+
+            // get update property page 2
+            Route::get('update/step-2/{id}', [
+                'as' => 'get-update-property-step-two',
+                'uses' => 'PropertyListingController@get_update_property_step_two',
+            ]);
+
+            // post update property page 2
+            Route::post('update/step-2/', [
+                'as' => 'post-update-property-step-two',
+                'uses' => 'PropertyListingController@post_update_property_step_two',
+            ]);
+
+            // get update property page 3
+            Route::get('update/step-3/{id}', [
+                'as' => 'get-update-property-step-three',
+                'uses' => 'PropertyListingController@get_update_property_step_three',
+            ]);
+
+            // post update property page 3
+            Route::post('update/step-3/', [
+                'as' => 'post-update-property-step-three',
+                'uses' => 'PropertyListingController@post_update_property_step_three',
+            ]);
+
         });
         /** end property listing management */
 

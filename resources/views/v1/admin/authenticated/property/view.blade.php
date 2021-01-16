@@ -12,7 +12,7 @@
 
                 <div class="col-md-6 text-right">
 
-                    <a href="{{ route('get-property-listing') }}" class="btn btn-info btn-lg text-dark {{ app('App\Http\Controllers\Helper')->superAdminStatus() }}" style="display:inline-block; margin-right: 1% !important">
+                    <a href="{{ route('get-update-property-setp-one', \Crypt::encrypt($property->id)) }}" class="btn btn-info btn-lg text-dark {{ app('App\Http\Controllers\Helper')->superAdminStatus() }}" style="display:inline-block; margin-right: 1% !important">
                         Edit
                         <i class="fa fa-edit"></i>
                     </a>
@@ -27,7 +27,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-7 col-lg-7 col-sm-12" style="padding-left: 2.8%; margin-bottom: 0.5%">
-                            <h4 style="text-decoration:dotted; color: #2774AE;"> {!! ucfirst($property->title) !!} skbhkdbbsbdhksbbdshkbdhbhksbshkb dhbssbdhsvdjhsjh,dvjhsvjhk</h4>
+                            <h4 style="text-decoration:dotted; color: #2774AE;"> {!! ucfirst($property->title) !!} </h4>
                         </div>
                     </div>
 
@@ -39,7 +39,7 @@
                                     <div class="col-md-12 col-lg-12 col-sm-12">
                                         
                                         <img src="{!! Storage::url('public/images/'.$property->property_images->pluck('front_view')->first()) !!}" alt=""
-                                            class="img img-responsive img-thumbnail" id="main-img" />
+                                            class="img img-responsive img-thumbnail" id="main-img" style="width:100%; height: 65% !important" />
 
                                             <div style="margin-top: 4%; background-color: rgba(200, 200, 200, 0.4); padding: 2% 1% 2%">
                                                 <img src="{!! Storage::url('public/images/'.$property->property_images->pluck('side_view')->first()) !!}" alt=""
@@ -147,7 +147,6 @@
                                     </span>
 
                                     {!! ucfirst($property->description) !!}
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut quos, laborum nulla inventore facilis magnam, tempore aperiam nostrum eum qu
                                 </p>
                             </div>
 
@@ -157,7 +156,6 @@
                                 </h5>
                                 <p>
                                     {!! $property->address !!}
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus sed eos exercitationem aperiam quam, hic aliquam nisi vitae nam eni
                                 </p>
                             </div>
 

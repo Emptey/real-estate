@@ -363,4 +363,310 @@ class PropertyListingController extends Controller
 
     }
 
+    // get update property page 1
+    public function update_property_step_one(Request $request, $id) {
+        try {
+            // decrypt id
+            $id = \Crypt::decrypt($id);
+
+            $property = PropertyListing::where('id', $id)->get();  // get property record
+
+            // check if property exist
+            if ($property->count() > 0) {
+                // property found - put property in session - return view
+                $request->session()->put('property.record', $property);
+                return view('v1.admin.authenticated.property.update', ['property' => $property]);
+            } else {
+                // property not found
+                $notification = [
+                    'message' => 'property not found.',
+                    'alert-type' => 'error',
+                ];
+
+                return redirect()
+                        ->back()
+                        ->with($notification);
+            }
+
+        } catch(Illuminate\Contracts\Encryption\DecryptException $e) {
+            // payload error caught
+            return redirect()
+                    ->back()
+                    ->with(
+                        [
+                            'message' => 'Property not found.',
+                            'alert-type' => 'danger',
+                        ]
+                    );
+        }
+    }
+
+    // post update property page 1
+    public function post_update_property_step_one(Request $request){
+        // validation
+        $this->validate($request, [
+            'id' => 'required|numeric',
+            'title' => 'required|regex:/^[a-zA-Z\s]*$/',
+            'address' => 'required|regex:/^[a-zA-Z\s\0-9]*$/',
+            'description' => 'required|regex:/^[a-zA-Z\s\.,]*$/',
+            'bedroom' => 'required|numeric',
+            'bathroom' => 'required|numeric',
+            'toilet' => 'required|numeric',
+            'slot' => 'required|numeric',
+            'duration' => 'required|numeric',
+        ]);
+
+        // get property record
+        $property = PropertyListing::where('id', $request->id);
+
+        // check if property record was found
+        if ($property->count() > 0) {
+            // property record found - assign values to session - send user to step 2
+            $request->session()->put('id', $request->id);
+            $request->session()->put('title', $request->title);
+            $request->session()->put('address', $request->address);
+            $request->session()->put('description', $request->description);
+            $request->session()->put('bedroom', $request->bedroom);
+            $request->session()->put('bathroom', $request->bathroom);
+            $request->session()->put('toilet', $request->toilet);
+            $request->session()->put('slot', $request->slot);
+            $request->session()->put('duration', $request->duration);
+
+            // redirect user to page fa-rotate-270
+            return redirect()
+                    ->route('get-update-property-step-two', \Crypt::encrypt($property->pluck('id')->first()));
+            
+        } else {
+            // property record not found
+        }
+    }
+
+    // get update property page 2
+    public function get_update_property_step_two(Request $request, $id=null) {
+        // check if page 1 was filled out
+        if (!empty($request->session()->get('id'))) {
+            try {
+                // decrypt id
+                $id = \Crypt::decrypt($id);
+
+                // get property record
+                $property = PropertyListing::where('id', $id)->get();
+
+                // check if property record was found
+                if ($property->count() > 0) {
+                    // property found - return page 2 view
+                    return view('v1.admin.authenticated.property.update_step_two', ['property' => $property]);
+                } else {
+                    // property not found - redirect user to previous page
+                    return redirect()
+                            ->back();
+                }
+            } catch (\Throwable $th) {
+                // invalid payload provided
+                return redirect()
+                        ->back()
+                        ->with([
+                            'message' => 'Property not found.',
+                            'alert-type' => 'error',
+                        ]);
+            }
+
+        } else {
+            // page 1 form not filled - redirect user to previous page
+            return redirect()
+                    ->back();
+        }
+    }
+
+    // post update property page 2
+    public function post_update_property_step_two(Request $request) {
+        // validation
+        $this->validate($request, [
+            'cost' => 'required|numeric',
+            'mgnt_fee' => 'required|numeric',
+            'sell_off_price' => 'required|numeric',
+            'sell_off_roi' => 'required|numeric',
+            'rentage_price' => 'numeric',
+            'rentage_roi' => 'numeric',
+            'is_rentable' => 'numeric',
+        ]);
+
+        // saved entered form values in session
+        $request->session()->put('cost', $request->cost);
+        $request->session()->put('mngt_fee', $request->mgnt_fee);
+        $request->session()->put('sell_off_price', $request->sell_off_price);
+        $request->session()->put('sell_off_roi', $request->sell_off_roi);
+        $request->session()->put('rentage_price', $request->rentage_price);
+        $request->session()->put('rentage_roi', $request->rentage_roi);
+        $request->session()->put('is_rentable', $request->is_rentable);
+
+        // return user to page 3 view
+        return redirect()
+                ->route('get-update-property-step-three', \Crypt::encrypt($request->session()->get('id')));
+    }
+
+    // get update property page 3
+    public function get_update_property_step_three(Request $request, $id=null) {
+        // check if user had filled forms in page 1 and page 2
+        if (!empty($request->session()->get('id')) || !empty($request->session()->get('cost'))) {
+            // user filled forms in page 1 and page 2 - decrypt id
+            try {
+                // decrypt id
+                $id = \Crypt::decrypt($id);
+
+                // get property record
+                $property = PropertyListing::find($id);
+
+                // check if property was found
+                if ($property->count() > 0) {
+                    // property record found
+                    return view('v1.admin.authenticated.property.update_step_three', ['property' => $property]);
+                } else {
+                    // property not found -  reidrect user to previous page
+                    return redirect()
+                            ->back();
+                }
+
+            } catch (\Throwable $th) {
+                // invalid payload provided
+                return redirect()
+                        ->back();
+            }
+        } else {
+            // user didn't fill forms in page 1 and page 2 - return user to previous page
+            return redirect()
+                    ->back();
+        }
+    }
+
+    // post update property page 3
+    public function post_update_property_step_three(Request $request) {
+        // validation
+        $this->validate($request, [
+            'front_view' => 'required|mimes:png,jpg,jpeg',
+            'side_view'  => 'required|mimes:png,jpg,jpeg',
+            'back_view'  => 'required|mimes:png,jpg,jpeg',
+        ]);
+
+        // get property record
+        $property = PropertyListing::where('id', $request->session()->get('id'));
+        
+        // check if property exit
+        if ($property->count() > 0) {
+            // property record found
+            $new_property_record = [
+                'title' => strtolower($request->session()->get('title')),
+                'description' => strtolower($request->session()->get('description')),
+                'address' => strtolower($request->session()->get('address')),
+                'bedroom' => $request->session()->get('bedroom'),
+                'bathroom' => $request->session()->get('bathroom'),
+                'toilet' => $request->session()->get('toilet'),
+                'slot' => $request->session()->get('slot'),
+                'duration' => $request->session()->get('duration'),
+                'purchase_amount' => $request->session()->get('cost'),
+                'mngt_fee' => $request->session()->get('mngt_fee'),
+                'sell_off_price' => $request->session()->get('sell_off_price'),
+                'sell_off_profit_percent' => $request->session()->get('sell_off_roi'),
+                'rentage_price' => $request->session()->get('rentage_price'),
+                'rentage_profit_percent' => $request->session()->get('rentage_roi'),
+                'is_rentable' => $request->session()->get('is_rentable'),
+            ];
+
+            // update property record
+            $update_property_record = $property->update($new_property_record);
+
+            // check if property record was updated
+            if ($update_property_record) {
+                // property record updated - update property listing image table
+                $property_image_listing = PropertyImages::where('property_listing_id', $request->session()->get('id'));
+
+                $new_property_images = [
+                    'front_view' => $request->front_view->hashName(),
+                    'side_view' => $request->side_view->hashName(),
+                    'back_view' => $request->back_view->hashName(),
+                ];
+
+                $move_front_image = $request->file('front_view')->store('public/images');
+                $move_side_image = $request->file('side_view')->store('public/images');
+                $move_back_image = $request->file('back_view')->store('public/images');
+
+                // check if images were moved to local storage
+                if (!is_null($move_front_image) || !is_null($move_side_image) || !is_null($move_back_image)) {
+                    // images moved to local storage update db record - notify admin
+                    $update_property_image = $property_image_listing->update($new_property_images);
+
+                    // check if property images were updated
+                    if ($update_property_image) {
+                        // property image listing record updated - notify admin
+                        $notification = [
+                            'message' => 'Property successfully updated.',
+                            'alert-type' => 'success',
+                        ];
+
+                        // get updated property record id
+                        $property_id = $request->session()->get('id');
+
+                        // delete session data
+                        $request->session()->forget('id');
+                        $request->session()->forget('title');
+                        $request->session()->forget('address');
+                        $request->session()->forget('description');
+                        $request->session()->forget('bedroom');
+                        $request->session()->forget('bathroom');
+                        $request->session()->forget('toilet');
+                        $request->session()->forget('slot');
+                        $request->session()->forget('duration');
+                        $request->session()->forget('cost');
+                        $request->session()->forget('mngt_fee');
+                        $request->session()->forget('sell_off_price');
+                        $request->session()->forget('sell_off_roi');
+                        $request->session()->forget('rentage_price');
+                        $request->session()->forget('rentage_roi');
+                        $request->session()->forget('is_rentable');
+
+                        // redirect user to view property page
+                        return redirect()
+                                ->route('view-property', \Crypt::encrypt($property_id))
+                                ->with($notification);
+                    } else {
+                        // property image listing record not updated - notify admin
+                        $notification = [
+                            'message' => 'Record not updated, kindly upload images again.',
+                            'alert-type' => 'error',
+                        ];
+
+                        return redirect()
+                                ->back()
+                                ->with($notification);
+                    }
+
+                } else {
+                    // images not moved to local storage - notify admin
+                    $notification = [
+                        'message' => 'An error has occured, kindly try again.',
+                        'alert-type' => 'error',
+                    ];
+
+                    return redirect()
+                            ->back()
+                            ->with($notification);
+                }
+            } else {
+                // property record not updated - notify admin
+                $notification = [
+                    'message' => 'Update failed, kindly try again.',
+                    'alert-type' => 'error',
+                ];
+
+                return redirect()
+                        ->back()
+                        ->with($notification);
+            }
+        } else {
+            // property not found.
+            return redirect()
+                    ->back();
+        }
+    }
+
 }
