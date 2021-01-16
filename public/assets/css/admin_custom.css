@@ -156,7 +156,7 @@ a.admin-login-link {
       border-top-left-radius: 360px;
       border-bottom-left-radius: 360px;
       color: #b3d4ec;
-      font-size: 14pt;
+      font-size: 16pt;
       transition:  ease-in color .4s;
   }
 
@@ -174,6 +174,8 @@ a.admin-login-link {
       /* animation-direction: reverse; */
       animation-play-state: running;
       font-weight: normal;
+      padding: 6% 4% 6%;
+      font-size: 16pt;
       /* box-shadow: -6px -6px 10px  rgba(0, 0, 0, 0.2),
       inset 0px 0px 10px rgba(255, 255, 255, 0.6); */
   }
@@ -184,15 +186,15 @@ a.admin-login-link {
   }
 
   .bottom-menu {
-      padding-left: 2.3%;
+      padding-left: 1.5%;
       margin-bottom: 0.7%;
   }
 
   a.bottom-link {
       text-decoration: none;
       color: #b3d4ec;
-      font-size: 12pt;
-      margin-right: 5%;
+      font-size: 16pt;
+      margin-right: 3%;
       transition: ease-in color .4s;
   }
 
@@ -400,4 +402,14 @@ textarea {
     
     /* z-index: -1; */
     /* transform: translateX(-50%) translateY(-60%); */
+}
+
+/* property images */
+.little-property-image {
+    width: 50px;
+    height: 50px;
+}
+
+.property-title {
+    text-decoration:dotted;
 }

@@ -9,9 +9,9 @@
     <div class="x1-5-margin-top menu-container">
         <nav class="nav flex-column">
             <a class="{{ Route::is('get-dashboard') ? 'active animate__animated animate__fadeIn animate__delay-1s' : '#' }}" href="{{ route('get-dashboard') }}"> <i class="fa fa-tachometer"></i> Dashboard </a>
-            <a class="{{ Route::is('get-admin-user-mgnt') || Route::is('search-user') || Route::is('add-user') || Route::is('view-user') ? 'active animate__animated animate__fadeIn animate__delay-1s' : '#' }}" href="{{ route('get-admin-user-mgnt') }}"> <i class="fa fa-users"></i> User Management </a>
-            <a class="{{ Route::is('get-property-listing') || Route::is('search-property') || Route::is('get-add-property') || Route::is('post-add-property-first') || Route::is('get-step-two-property') || Route::is('post-add-property-second') || Route::is('get-step-three-property') || Route::is('post-add-property-third') ?  'active animate__animated animate__fadeIn animate__delay-1s' : '' }}" href="{{ route('get-property-listing') }}"> <i class="fa fa-building-o"></i> Property Listing</a>
-            <a class="#" href="#"> <i class="fa fa-chart-pie"></i> Investment Management</a>
+            <a class="{{ Route::is('get-admin-user-mgnt') || Route::is('search-user') || Route::is('add-user') || Route::is('view-user') ? 'active animate__animated animate__fadeIn animate__delay-1s' : '#' }}" href="{{ route('get-admin-user-mgnt') }}"> <i class="fa fa-users"></i> User Manager </a>
+            <a class="{{ Route::is('get-property-listing') || Route::is('search-property') || Route::is('get-add-property') || Route::is('post-add-property-first') || Route::is('get-step-two-property') || Route::is('post-add-property-second') || Route::is('get-step-three-property') || Route::is('post-add-property-third') || Route::is('view-property') ?  'active animate__animated animate__fadeIn animate__delay-1s' : '' }}" href="{{ route('get-property-listing') }}"> <i class="fa fa-building-o"></i> Property Listing</a>
+            <a class="#" href="#"> <i class="fa fa-chart-pie"></i> Investment Manager</a>
             <a class="#" href="#"> <i class="fa fa-coins"></i> Payment</a>
             <a class="#" href="#"> <i class="fa fa-bell"></i> Notification</a>
         </nav>

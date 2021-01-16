@@ -115,7 +115,26 @@ class PropertyListingController extends Controller
         // decrypt property id
         $id = \Crypt::decrypt($id);
 
-        return 'Fuck em all';
+        // get property from db
+        $property = PropertyListing::find($id);
+
+        // check if property exist
+        if ($property->count() > 0) {
+            // property exist - return view with property
+            return view('v1.admin.authenticated.property.view', ['property' => $property]);
+
+        } else {
+            // property doesn't exist - notify admin
+            $notification = [
+                'message' => 'Property not found.',
+                'alert-type' => 'error',
+            ];
+
+            return redirect()
+                    ->back()
+                    ->with($notification);
+        }
+
     }
 
     // search property
