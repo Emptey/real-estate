@@ -210,6 +210,12 @@ Route::group(['prefix' => 'authenticator'], function(){
                 'uses' => 'AdminInvestmentController@index',
             ]);
 
+            // search investment
+            Route::post('/', [
+                'as' => 'search-investment',
+                'uses' => 'AdminInvestmentController@search_investment',
+            ]);
+
             // change investment feature
             Route::get('change/rentage/status/{id}', [
                 'as' => 'change-investment-rentage-status',

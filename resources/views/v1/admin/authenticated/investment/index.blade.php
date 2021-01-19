@@ -23,7 +23,7 @@
     <div class="row first-content-row">
         <div class="col-md-12 col-lg-12 col-sm-12 no-padding-left">
             <div class="shadow mb-5 rounded" style="padding: 1.2%">
-                <form action="{{ route('search-property') }}" method="post" style="margin-bottom: 1.7%">
+                <form action="{{ route('search-investment') }}" method="post" style="margin-bottom: 1.7%">
                     @csrf
 
                     <div class="input-group" style="width:400px;">
