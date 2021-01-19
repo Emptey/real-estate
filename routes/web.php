@@ -134,73 +134,89 @@ Route::group(['prefix' => 'authenticator'], function(){
             ]);
 
             // post add property - first set of details
-            Route::post('add/', [
+            Route::post('add/property/', [
                 'as' => 'post-add-property-first',
                 'uses' => 'PropertyListingController@set_first_details',
             ]);
 
             // get add property page 2
-            Route::get('add/step/2/{id?}', [
+            Route::get('add/property/step/2/{id?}', [
                 'as' => 'get-step-two-property',
                 'uses' => 'PropertyListingController@set_second_details',
             ]);
 
             // post add property - second set of details
-            Route::post('add/step/2/', [
+            Route::post('add/property/step/2/', [
                 'as' => 'post-add-property-second',
                 'uses' => 'PropertyListingController@post_second_details',
             ]);
 
             // get add property page 3
-            Route::get('add/step/3/{id?}', [
+            Route::get('add/property/step/3/{id?}', [
                 'as' => 'get-step-three-property',
                 'uses' => 'PropertyListingController@set_third_details',
             ]);
 
             // post add property page 3
-            Route::post('add/step/3/', [
+            Route::post('add/property/step/3/', [
                 'as' => 'post-add-property-third',
                 'uses' => 'PropertyListingController@post_third_details',
             ]);
 
             // get update property page 1
-            Route::get('update/{id}', [
+            Route::get('update/property/{id}', [
                 'as' => 'get-update-property-setp-one',
                 'uses' => 'PropertyListingController@update_property_step_one',
             ]);
 
             // post update property page 1
-            Route::post('update/', [
+            Route::post('update/property/', [
                 'as' => 'post-update-property-step-one',
                 'uses' => 'PropertyListingController@post_update_property_step_one',
             ]);
 
             // get update property page 2
-            Route::get('update/step-2/{id}', [
+            Route::get('update/property/step-2/{id}', [
                 'as' => 'get-update-property-step-two',
                 'uses' => 'PropertyListingController@get_update_property_step_two',
             ]);
 
             // post update property page 2
-            Route::post('update/step-2/', [
+            Route::post('update/property/step-2/', [
                 'as' => 'post-update-property-step-two',
                 'uses' => 'PropertyListingController@post_update_property_step_two',
             ]);
 
             // get update property page 3
-            Route::get('update/step-3/{id}', [
+            Route::get('update/property/step-3/{id}', [
                 'as' => 'get-update-property-step-three',
                 'uses' => 'PropertyListingController@get_update_property_step_three',
             ]);
 
             // post update property page 3
-            Route::post('update/step-3/', [
+            Route::post('update/property/step-3/', [
                 'as' => 'post-update-property-step-three',
                 'uses' => 'PropertyListingController@post_update_property_step_three',
             ]);
 
         });
         /** end property listing management */
+
+        // investment route group/list
+        Route::group(['prefix' => 'investment'], function(){
+            // index page
+            Route::get('/', [
+                'as' => 'get-admin-investment',
+                'uses' => 'AdminInvestmentController@index',
+            ]);
+
+            // change investment feature
+            Route::get('change/rentage/status/{id}', [
+                'as' => 'change-investment-rentage-status',
+                'uses' => 'AdminInvestmentController@change_rentage_status',
+            ]);
+        });
+        // end investment group
 
         // logout route
         Route::get('logout', [

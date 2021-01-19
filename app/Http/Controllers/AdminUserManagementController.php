@@ -24,7 +24,7 @@ class AdminUserManagementController extends Controller
 
         $user = User::where('id', $id);  // search for user
         // check if user record exit
-        if($user->count() >0 ) {
+        if($user->count() > 0 ) {
             // user record found - check if user is active
             if ($user->pluck('is_active')->first()) {
                 // user is active - disable user
