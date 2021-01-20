@@ -21,7 +21,7 @@
     </div>
 
     <div class="row first-content-row">
-        <div class="col-md-12 col-lg-12 col-sm-12 no-padding-left">
+        <div class="col-md-12 col-lg-12 col-sm-12 no-padding">
             <div class="shadow mb-5 rounded" style="padding: 1.2%">
                 <form action="{{ route('search-investment') }}" method="post" style="margin-bottom: 1.7%">
                     @csrf
@@ -73,7 +73,7 @@
                                         <td class="text-center"> {!! $investment->is_filled ? '<i class="fa fa-check-circle text-success"></i>' : '<i class="fa fa-times-circle text-danger"></i>' !!} </td>
                                         <td class="text-center"> {!! $investment->is_complete ? '<i class="fa fa-check-circle text-success"></i>' : '<i class="fa fa-times-circle text-danger"></i>' !!} </td>
                                         <td class="text-center">
-                                            <a href="#" class="btn btn-light">View</a>
+                                            <a href="{{ route('get-specific-investment', \Crypt::encrypt($investment->id)) }}" class="btn btn-light">View</a>
                                             @if($investment->property_listing->is_rentable)
                                                 @if($investment->is_rented)
                                                     <a class="btn btn-danger" href="{{ route('change-investment-rentage-status', \Crypt::encrypt($investment->id)) }}"> Off rentage </a>

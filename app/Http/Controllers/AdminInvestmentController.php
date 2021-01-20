@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Investment;
 use App\PropertyListing;
+use App\UserInvestment;
 use Illuminate\Support\Facades\DB;
 
 class AdminInvestmentController extends Controller
@@ -225,5 +226,55 @@ class AdminInvestmentController extends Controller
                     ->with($notification);
         }
 
+    }
+
+    // view specific investment
+    public function view_investment(Request $request, $id) {
+        try {
+            // dcrypt id
+            $id = \Crypt::decrypt($id);
+
+            // get investment record
+            $investment = Investment::find($id);
+
+
+            // check if investment record was found
+            if($investment->count() > 0) {
+                // investment record found -  get users that invested in the selected property
+                $user_investment = UserInvestment::where('investment_id', $investment->id)->paginate(5);
+
+                // check if user investment record was found
+                if ($user_investment->count() > 0) {
+                    // user investment record found - return view
+                    return view('v1.admin.authenticated.investment.view', ['investment' => $investment, 'user_investment' => $user_investment]);
+                } else {
+                    // user investment record not found.
+                    return view('v1.admin.authenticated.investment.view', ['investment' => $investment, 'user_investment' => Null]);
+                }
+                
+            } else {
+                // investment record not found -  redirect admin to previous page - notify admin
+                $notification = [
+                    'message' => 'Invalid investment selected',
+                    'alert-type' => 'error',
+                ];
+
+                // redirect user to request page
+                return redirect()
+                        ->back()
+                        ->with($notification);
+
+            }
+        } catch (\Throwable $th) {
+            //throws if invalid payload error occurs
+            $notification = [
+                'message' => 'Invalid Investment payload',
+                'alert-type' => 'error',
+            ];
+
+            return redirect()
+                    ->back()
+                    ->with($notification);
+        }
     }
 }

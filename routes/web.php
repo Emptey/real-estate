@@ -233,6 +233,12 @@ Route::group(['prefix' => 'authenticator'], function(){
                 'as' => 'post-add-investment',
                 'uses' => 'AdminInvestmentController@post_add_investment',
             ]);
+
+            // view specific investment
+            Route::get('view/{id}', [
+                'as' => 'get-specific-investment',
+                'uses' => 'AdminInvestmentController@view_investment',
+            ]);
         });
         // end investment group
 

@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-md-8">
                     <h4 class="text-secondary"> <i class="fa fa-chart-pie"></i> 
-                        Investment Manager/@foreach(Request::segments() as $segment){{$segment}}/@endforeach
+                        Investment Manager
                     </h4>
                 </div>
 
@@ -24,7 +24,7 @@
     </div>
 
     <div class="row first-content-row">
-        <div class="col-md-12 col-lg-12 col-sm-12 no-padding-left">
+        <div class="col-md-12 col-lg-12 col-sm-12 no-padding">
             <div class="shadow mb-5 rounded" style="padding: 1.2%">
                 <form action="{{ route('post-add-investment') }}" method="post" style="width:50%; margin-top: 2%">
                     @csrf
