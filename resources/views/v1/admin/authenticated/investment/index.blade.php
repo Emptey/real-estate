@@ -7,12 +7,12 @@
         <div class="col-md-12 col-lg-12 col-sm-12  no-padding">
             <div class="row">
                 <div class="col-md-6">
-                    <h4 class="float-left"> <i class="fa fa-building"></i> Investment Manager</h4>
+                    <h4 class="float-left"> <i class="fa fa-chart-pie"></i> Investment Manager</h4>
                 </div>
 
                 <div class="col-md-6 text-right">
-                    <a href="{{ route('get-add-property') }}" class="btn btn-info btn-lg text-dark {{ app('App\Http\Controllers\Helper')->superAdminStatus() }} " style="display:inline-block; margin-right: 1% !important">
-                        Property
+                    <a href="{{ route('get-add-investment') }}" class="btn btn-info btn-lg text-dark {{ app('App\Http\Controllers\Helper')->superAdminStatus() }} " style="display:inline-block; margin-right: 1% !important">
+                        Investment
                         <i class="fa fa-plus"></i>
                     </a>
                 </div>

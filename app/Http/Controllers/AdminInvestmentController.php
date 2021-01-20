@@ -12,7 +12,7 @@ class AdminInvestmentController extends Controller
     // gets index page
     public function index(Request $request) {
         // get all investment
-        $investment = Investment::orderBy('id', 'desc')->paginate(5);
+        $investment = Investment::orderBy('id', 'desc')->paginate(10);
         return view('v1.admin.authenticated.investment.index', ['investments' => $investment]);
     }
 
@@ -155,5 +155,75 @@ class AdminInvestmentController extends Controller
                     ->back()
                     ->with($notification);
         }
+    }
+
+    // get add investment
+    public function add_investment(Request $request) {
+        // get property that is not already an investment
+        $property = DB::table('property_listings')
+                        ->join('investments as investments', 'property_listings.id', '=','investments.property_listing_id', 'left outer')
+                        ->where('investments.property_listing_id', null)
+                        ->get();
+
+        return view('v1.admin.authenticated.investment.add', ['properties' => $property]);
+    }
+
+    // post add investment
+    public function post_add_investment(Request $request) {
+        // validation
+        $this->validate($request, [
+            'slot' => 'required|numeric',
+            'property' => 'required|regex:/^[a-zA-Z\s\0-9]*$/',
+            'amount' => 'required|numeric',
+        ]);
+
+        // get investment record where the name matches
+        $property = PropertyListing::where('title', 'LIKE', $request->property)->get();
+
+        // check if property record was retrieved
+        if ($property->count() > 0) {
+            // property record found - create new investment
+            $investment = new Investment();  // create new investmetn instance
+            $investment->property_listing_id = $property->pluck('id')->first();  // sets investment property_listing id
+            $investment->amount_per_slot = $request->amount;  // sets investment amount per slot
+            $investment->avail_slot = $property->pluck('slot')->first();  // sets default available slot
+
+            $save_investment_record = $investment->save(); // save investment
+
+            // check if investment was saved
+            if ($save_investment_record) {
+                // investment record saved - redirect user to investment record list - notify admin
+                $notification = [
+                    'message' => 'Investment added successfully.',
+                    'alert-type' => 'success',
+                ];
+
+                return redirect()
+                        ->route('get-admin-investment')
+                        ->with($notification);
+            } else {
+                // investment record not saved -  notify admin
+                $notification = [
+                    'message' => 'An error has occured, kindly try again.',
+                    'alert-type' => 'error',
+                ];
+
+                return redirect()
+                        ->back()
+                        ->with($notification);
+            }
+
+        } else {
+            // property record not - notify admin
+            $notification = [
+                'message' => 'An error has occured, kindly try again.',
+                'alert-type' => 'error',
+            ];
+
+            return redirect()
+                    ->back()
+                    ->with($notification);
+        }
+
     }
 }

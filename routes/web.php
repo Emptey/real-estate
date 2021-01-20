@@ -221,6 +221,18 @@ Route::group(['prefix' => 'authenticator'], function(){
                 'as' => 'change-investment-rentage-status',
                 'uses' => 'AdminInvestmentController@change_rentage_status',
             ]);
+
+            // add investment
+            Route::get('add/',  [
+                'as' => 'get-add-investment',
+                'uses' => 'AdminInvestmentController@add_investment',
+            ]);
+
+            // post add investment
+            Route::post('add/', [
+                'as' => 'post-add-investment',
+                'uses' => 'AdminInvestmentController@post_add_investment',
+            ]);
         });
         // end investment group
 
