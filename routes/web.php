@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use Carbon\Carbon;
 use App\User;
+use App\SellOffPayout;
+use App\RentPayout;
 
 /*
 |--------------------------------------------------------------------------
@@ -241,6 +243,72 @@ Route::group(['prefix' => 'authenticator'], function(){
             ]);
         });
         // end investment group
+
+        // investment payment route group
+        Route::group(['prefix' => 'payment'], function () {
+            // index page
+            Route::get('/', [
+                'as' => 'get-admin-payment',
+                'uses' => 'AdminPaymentController@index',
+            ]);
+
+            // options route
+            Route::group(['prefix' => 'action',], function(){
+                // pay all users rent
+                Route::get('pay/rent/pay-all/', [
+                    'as' => 'action-pay-all',
+                    'uses' => 'AdminPaymentController@pay_all',
+                ]);
+
+                
+                // pay specific user rent
+                Route::get('pay/rent/user/{id}', [
+                    'as' => 'pay-user',
+                    'uses' => 'AdminPaymentController@pay_user',
+                ]);
+
+
+
+                // download rent payout list
+                Route::get('pay/rent/list/pdf', function(){
+                    $sell_off = RentPayout::where('is_paid', 0)->get();
+                  
+                    $pdf = PDF::loadView('v1.admin.pdfs.sell_off', ['sell_offs' => $sell_off, 'title' => 'rent payout list']);
+                    App\UserActivity::create([
+                        'user_id' => \Auth::user()->id,
+                        'activity' => 'Downloaded sell off payout list.'
+                    ])->save();
+        
+                    return $pdf->download('sell_off_'.Carbon::now().'.pdf');
+                });
+
+                // pay specific user sell_off
+                Route::get('pay/sell-off/user/{id}', [
+                    'as' => 'pay-user-sell-off',
+                    'uses' => 'AdminPaymentController@pay_user_sell_off',
+                ]);
+
+                // pay all users sell_off
+                Route::get('pay/sell-off/user/', [
+                    'as' => 'pay-all-users-sell-off',
+                    'uses' => 'AdminPaymentController@pay_all_users_sell_off',
+                ]);
+
+                // download sell-off payuout list
+                Route::get('pay/sell-off/list/pdf', function (){
+                    $sell_off = SellOffPayout::where('is_paid', 0)->get();
+                  
+                    $pdf = PDF::loadView('v1.admin.pdfs.sell_off', ['sell_offs' => $sell_off, 'title' => 'Sell-off payout list']);
+                    App\UserActivity::create([
+                        'user_id' => \Auth::user()->id,
+                        'activity' => 'Downloaded sell off payout list.'
+                    ])->save();
+        
+                    return $pdf->download('sell_off_'.Carbon::now().'.pdf');
+                });
+            });
+
+        });
 
         // logout route
         Route::get('logout', [

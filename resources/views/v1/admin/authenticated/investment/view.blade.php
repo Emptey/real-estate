@@ -33,7 +33,7 @@
                             alt="front_view" style="height: 400px;" class="img img-responsive img-thumbnail" />
                         </div>
                         <div class="col-md-7 col-lg-7 col-sm-12">
-                            <h3 class="font-weight-bold">
+                            <h3 class="font-weight-bold" style="color: #2774AE">
                                 {!! strtoupper($investment->property_listing->title) !!}
                             </h3>
                             <p style="margin-top:1.5%; border-bottom: 1px solid rgba(200, 200, 200, 0.4); padding: 1.1% 0% 1.1%;  border-top: 1px solid rgba(200, 200, 200, 0.4)">
@@ -105,7 +105,7 @@
                                 @endforeach
                             @else
                                 <tr>
-                                    <td class="text-center text-danger" colspan="5">No one has invested in this property yet.</td>
+                                    <td class="text-center text-danger" colspan="6">No one has invested in this property yet.</td>
                                 </tr>
                             @endif
                         </tbody>

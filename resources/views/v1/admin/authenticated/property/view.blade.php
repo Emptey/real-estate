@@ -27,44 +27,38 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-7 col-lg-7 col-sm-12" style="padding-left: 2.8%; margin-bottom: 0.5%">
-                            <h4 style="text-decoration:dotted; color: #2774AE;"> {!! ucfirst($property->title) !!} </h4>
+                            <!-- <h4 style="text-decoration:dotted; color: #2774AE;"> {!! ucfirst($property->title) !!} </h4> -->
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="col-md-7 col-lg-7 col-sm-12">
+                        <div class="col-md-5 col-lg-5 col-sm-12">
                             <div class="container-fluid">
 
                                 <div class="row">
                                     <div class="col-md-12 col-lg-12 col-sm-12">
                                         
                                         <img src="{!! Storage::url('public/images/'.$property->property_images->pluck('front_view')->first()) !!}" alt=""
-                                            class="img img-responsive img-thumbnail" id="main-img" style="width:100%; height: 65% !important" />
+                                            class="img img-responsive img-thumbnail" id="main-img" style="height: 400px !important" />
 
                                             <div style="margin-top: 4%; background-color: rgba(200, 200, 200, 0.4); padding: 2% 1% 2%">
                                                 <img src="{!! Storage::url('public/images/'.$property->property_images->pluck('side_view')->first()) !!}" alt=""
-                                                    class="img img-thumbnail img-click" style="display:inline; width: 313px; height: 250px; margin-right: 0.14%" id="side_image"/>
+                                                    class="img img-thumbnail img-click" style="display:inline; height: 200px; margin-right: 0.14%" id="side_image"/>
 
                                                 <img src="{!! Storage::url('public/images/'.$property->property_images->pluck('back_view')->first()) !!}" alt=""
-                                                    class="img img-thumbnail img-click" style="display: inline; width: 313px; height: 250px;" id="back_image" />
+                                                    class="img img-thumbnail img-click" style="display: inline; height: 200px " id="back_image" />
                                             </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-md-5 col-lg-5 col-sm-12 no-padding">
+                        <div class="col-md-7 col-lg-7 col-sm-12 no-padding">
 
                             <div>
-                               <!-- <p>
-                                    <span class="font-weight-bold">
-                                        <i class="fa fa-clock" style="color: #2774AE;"></i>
-                                        Duration: 
-                                    </span>
-                                    {!! $property->duration !!}
-                               </p> -->
+                            <h4 class="font-weight-bold"  style="color: #2774AE;"> {!! strtoupper($property->title) !!} </h4>    
 
-                               <p style="border-bottom: 1px solid rgba(200, 200, 200, 0.4); padding-bottom: 1%">
+                               <p style="border-bottom: 1px solid rgba(200, 200, 200, 0.4); border-top: 1px solid rgba(200, 200, 200, 0.4); padding: 1.1% 0 1.1%">
                                     <span class="font-weight-bold">
                                         <fa class="fa fa-poll" style="color: #2774AE;"></fa>
                                         Cost: 
@@ -131,12 +125,23 @@
                                     </span>
                                     {!! $property->slot !!}
 
-                                    <span class="font-weight-bold" style="margin-left: 3%">
+                                </p>
+
+                                <p style="border-bottom: 1px solid rgba(200, 200, 200, 0.4); padding-bottom: 1%">
+                                    <span class="font-weight-bold">
                                         <i class="fa fa-clock" style="color: #2774AE;"></i>
                                         Duration: 
                                     </span>
                                     {!! $property->duration !!}
+                                </p>
+                            </div>
 
+                            <div>
+                                <h5 class="font-weight-bold">
+                                    <i class="fas fa-map-marker-alt" style="color: #2774AE;"></i> Address
+                                </h5>
+                                <p>
+                                    {!! $property->address !!}
                                 </p>
                             </div>
 
@@ -147,15 +152,6 @@
                                     </span>
 
                                     {!! ucfirst($property->description) !!}
-                                </p>
-                            </div>
-
-                            <div>
-                                <h5 class="font-weight-bold">
-                                    <i class="fas fa-map-marker-alt" style="color: #2774AE;"></i> Address
-                                </h5>
-                                <p>
-                                    {!! $property->address !!}
                                 </p>
                             </div>
 

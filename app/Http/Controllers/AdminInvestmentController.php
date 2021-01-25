@@ -277,4 +277,5 @@ class AdminInvestmentController extends Controller
                     ->with($notification);
         }
     }
+
 }
