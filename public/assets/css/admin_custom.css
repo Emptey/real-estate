@@ -298,6 +298,22 @@ a.bottom-link:hover {
     padding-bottom: 0.9%;
 }
 
+.x2-margin-top {
+    margin-top: 2%;
+}
+
+.x3-margin-top {
+    margin-top: 3%;
+}
+
+.x4-margin-top {
+    margin-top: 4%;
+}
+
+.x5-margin-top {
+    margin-top: 5%;
+}
+
 
 /* investment overview titles */
 
@@ -497,4 +513,17 @@ textarea {
 
 .off {
     display: none;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #2774AE;
 }

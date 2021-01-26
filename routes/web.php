@@ -309,6 +309,33 @@ Route::group(['prefix' => 'authenticator'], function(){
             });
 
         });
+        // end payment routes
+
+        // notification route group
+        Route::group(['prefix' => 'notification'], function () {
+            // index page
+            Route::get('/', [
+                'as' => 'get-admin-notification',
+                'uses' => 'AdminNotificationController@index',
+            ]);
+
+            // post notification - new notification
+            Route::post('/', [
+                'as' => 'post-admin-notification',
+                'uses' => 'AdminNotificationController@post_notification',
+            ]);
+        });
+        // end notification route group
+
+        // settings route group
+        Route::group(['prefix' => 'settings'], function () {
+            // index page
+            Route::get('/', [
+                'as' => 'get-admin-settings',
+                'uses' => 'AdminSettingsController@index',
+            ]);
+        });
+        // end settings route group
 
         // logout route
         Route::get('logout', [

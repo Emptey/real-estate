@@ -22,12 +22,12 @@
                 href="{{ route('get-property-listing') }}"> <i class="fa fa-building-o"></i> Property Listing</a>
             <a class="{{ Route::is('get-admin-investment') || Route::is('search-investment') || Route::is('get-add-investment') || Route::is('get-specific-investment') ? 'active animate__animated animate__fadeIn animate__delay-1s' : '' }}" href="{{ route('get-admin-investment') }}"> <i class="fa fa-chart-pie"></i> Investment Manager</a>
             <a class="{{ Route::is('get-admin-payment') ? 'active animate__animated animate__fadeIn animate__delay-1s' : '' }}" href="{{ route('get-admin-payment') }}"> <i class="fa fa-coins"></i> Payment Manager</a>
-            <a class="#" href="#"> <i class="fa fa-bell"></i> Notification</a>
+            <a class="{{ Route::is('get-admin-notification') ? 'active animate__animated animate__fadeIn animate__delay-1s' : '' }}" href="{{ route('get-admin-notification') }}"> <i class="fa fa-bell"></i> Notification</a>
         </nav>
     </div>
 
     <div class="bottom-menu fixed-bottom">
-        <a href="#" class="bottom-link"> <i class="fa fa-cog"></i> Settings</a>
+        <a href="{{ route('get-admin-settings') }}" class="bottom-link"> <i class="fa fa-cog"></i> Settings</a>
         <a href="{{ route('admin-logout') }}" class="bottom-link"> <i class="fa fa-sign-out"></i> Logout</a>
     </div>
 
