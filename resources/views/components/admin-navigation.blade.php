@@ -27,7 +27,7 @@
     </div>
 
     <div class="bottom-menu fixed-bottom">
-        <a href="{{ route('get-admin-settings') }}" class="bottom-link"> <i class="fa fa-cog"></i> Settings</a>
+        <a href="{{ route('get-admin-settings') }}" class="bottom-link {{ Route::is('get-admin-settings') || Route::is('change-admin-password') ? 'actived' : ''  }} "> <i class="fa fa-cog"></i> Settings</a>
         <a href="{{ route('admin-logout') }}" class="bottom-link"> <i class="fa fa-sign-out"></i> Logout</a>
     </div>
 

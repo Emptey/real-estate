@@ -140,6 +140,11 @@ a.admin-login-link-active {
     color: #2774AE;
 }
 
+a.actived {
+    color: #fff !important;
+    /* background-color: rgb(255, 255, 255); */
+}
+
 
 /* nav header */
 

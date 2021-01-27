@@ -334,6 +334,12 @@ Route::group(['prefix' => 'authenticator'], function(){
                 'as' => 'get-admin-settings',
                 'uses' => 'AdminSettingsController@index',
             ]);
+
+            // change password
+            Route::post('/', [
+                'as' => 'change-admin-password',
+                'uses' => 'AdminSettingsController@change_password',
+            ]);
         });
         // end settings route group
 
