@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\UserActivity;
 
 class Helper extends Controller
 {
@@ -62,6 +63,27 @@ class Helper extends Controller
             // user has no super-admin privilege
             return 'disabled';
         }
+    }
+
+    // records user activity
+    public function user_activity($activity) {
+        // create a new user activity
+        $user_activity = new UserActivity();
+        $user_activity->user_id = \Auth::user()->id;  // set user id
+        $user_activity->activity = $activity;
+
+        // save user activity
+        $save_activity = $user_activity->save();
+
+        // check if activity was saved
+        if ($save_activity) {
+            return true;
+        } else {
+            return false;
+        }
+
+
+
     }
 
 }
