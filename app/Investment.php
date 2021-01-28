@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Investment extends Model
 {
+    protected $guarded = ['id'];
     // relationship btw investment & property_listing
     public function property_listing() {
         return $this->belongsTo('App\PropertyListing');

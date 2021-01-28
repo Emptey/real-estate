@@ -81,9 +81,19 @@ class Helper extends Controller
         } else {
             return false;
         }
+    }
 
+    // calculate investment roi
+    public function calculate_roi($amount, $percentage) {
+        // compute user profit
+        $roi = (($amount / 100) * $percentage) + $amount;
+        return $roi;
+    }
 
-
+    // calculate next rent payment circle
+    public function next_rent_calculation() {
+        $next_payment_date = date('Y-m-d', strtotime('+ 360 days'));
+        return $next_payment_date;
     }
 
 }

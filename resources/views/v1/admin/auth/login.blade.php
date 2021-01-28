@@ -38,7 +38,7 @@
                         </div>
 
                         <div class="form-group input-group-lg">
-                            <label for="email">Email {{ \Hash::make('password') }} </label>
+                            <label for="email">Email</label>
                             <input type="email" name="email" id="email" class="form-control sm" autocomplete="off" placeholder="Enter Email" 
                                 value="{{Request::old('email') }}"  aria-describedby="inputGroup-sizing-lg" />
                             
