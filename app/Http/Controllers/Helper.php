@@ -7,6 +7,23 @@ use App\UserActivity;
 
 class Helper extends Controller
 {
+    // activator
+    public static function activator() {
+        $activate = [
+            'is_active' => 1,
+        ];
+
+        return $activate;
+    }
+
+    // deactivator
+    public static function deactivator () {
+        $deactivate = [
+            'is_active' => 0,
+        ];
+
+        return $deactivate;
+    }
     // generates random number
     public static function random_number() {
         $random_number = mt_rand(10000, 90000);
