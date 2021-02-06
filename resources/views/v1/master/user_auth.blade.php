@@ -32,6 +32,15 @@
 </head>
 <body>
     <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 col-lg-12 col-sm-12">
+                <div class='progress' id="progress_div">
+                    <div class='bar' id='bar1'></div>
+                    <div class='percent' id='percent1'></div>
+                </div>
+                <input type="hidden" id="progress_width" value="0">
+            </div>
+        </div>
         <!-- contents starts with rows -->
         @yield('content')
     </div>
