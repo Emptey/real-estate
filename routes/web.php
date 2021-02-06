@@ -17,8 +17,64 @@ use App\RentPayout;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', [
+    'as' => 'get-index-page',
+    'uses' => 'UserDefaultPagesController@index',
+]);
+
+// user auth group
+Route::group(['prefix' => 'auth'], function(){
+    // login route
+    Route::get('login/', [
+        'as' => 'get-user-login',
+        'uses' => 'UserDefaultPagesController@login',
+    ]);
+
+    // post login
+    Route::post('login/', [
+        'as' => 'post-user-login',
+        'uses' => 'UserDefaultPagesController@postLogin'
+    ]);
+
+    // 2fa 
+    Route::get('login/2fa/', [
+        'as' => 'get-user-two-fa',
+        'uses' => 'UserDefaultPagesController@two_fa',
+    ]);
+
+    // post 2fa
+
+    // register route
+    Route::get('register/', [
+        'as' => 'get-user-register',
+        'uses' => 'UserDefaultPagesController@register',
+    ]);
+
+    // post register
+    Route::post('register/', [
+        'as' => 'post-user-register',
+        'uses' => 'UserDefaultPagesController@postRegister',
+    ]);
+
+    // register step two
+    Route::get('register/step/two', [
+        'as' => 'get-user-register-step-two',
+        'uses' => 'UserDefaultPagesController@register_step_two',
+    ]);
+
+    // post register step two
+    Route::post('register/step/two', [
+        'as' => 'post-user-register-step-two',
+        'uses' => 'UserDefaultPagesController@post_register_step_two',
+    ]);
+
+    // register step three
+    Route::get('register/step/three', [
+        'as' => 'get-user-register-three',
+        'uses' => 'UserDefaultPagesController@register_step_three',
+    ]);
+
+    // post register step three
 });
 
 // admin auth group 

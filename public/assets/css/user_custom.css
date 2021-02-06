@@ -1,0 +1,284 @@
+    html,
+    body {
+        height: 100%;
+        width: 100%;
+    }
+    
+    body {
+        font-family: 'Montserrat', sans-serif;
+        background: #162543;
+        margin: 0;
+        padding: 0;
+    }
+    /* containers */
+    
+    .left-container>.circle {
+        margin: 20px;
+    }
+    /* navbar links */
+    
+    @keyframes fadeInNav {
+        10% {
+            border: 1px solid #fff;
+        }
+        20% {
+            border: 2px solid #fff;
+        }
+        30% {
+            border: 3px solid #fff;
+        }
+        40% {
+            border: 4px solid #fff;
+        }
+        50% {
+            boorder: 5px solid #fff;
+        }
+    }
+    
+    a.nav-link {
+        color: #fff;
+        /* font-family: Roboto; */
+        font-style: normal;
+        font-weight: normal;
+        font-size: 24px;
+        line-height: 28px;
+        margin-right: 50px;
+    }
+    
+    a.nav-link.active {
+        /* animation-name: fadeInNav;
+        animation-timing-function: ease-in; */
+        border: 5px solid #fff;
+        /* filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.25)); */
+        border-radius: 50px;
+        padding-right: 30px !important;
+        padding-left: 30px !important;
+        text-align: center;
+    }
+    /* toastr configuration */
+    
+    .toast-success {
+        background-color: rgb(0, 165, 41) !important;
+    }
+    
+    .toast-error {
+        background-color: rgb(128, 0, 0) !important;
+    }
+    
+    .toast-warning {
+        background-color: rgb(184, 89, 34) !important;
+    }
+    
+    .toast-info {
+        background-color: #0995e6;
+    }
+    /* end toastr */
+    /* login/register boxes */
+    
+    .message-box {
+        background: #162543;
+        padding: 20px;
+    }
+    
+    .left-container {
+        margin-top: 30%;
+    }
+    
+    .left-container>.content>h2 {
+        width: 100%;
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 48px;
+        line-height: 59px;
+        /* identical to box height */
+        color: #FFFFFF;
+    }
+    
+    .left-container>.content>p {
+        color: #fff;
+        font-size: 16pt;
+        text-align: left;
+        margin-top: 40px;
+        line-height: 40px;
+    }
+    
+    .underline {
+        /* border-bottom: top:  */
+        border-bottom: 10px solid #3D9276;
+        padding-bottom: 20px;
+    }
+    
+    .left-container>.content {
+        margin-top: 30px;
+    }
+    
+    .field-box {
+        background: #3D9276;
+        padding: 20px;
+        margin: 0;
+        height: 100vh;
+    }
+    
+    .right-container {
+        margin-top: 25%;
+    }
+    
+    .right-container>.icon {
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 58px;
+        color: #fff;
+    }
+    
+    .right-container>.heading {
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 30px;
+        line-height: 35px;
+        color: #FFFFFF;
+        margin-top: 40px;
+    }
+    
+    .custom-input {
+        margin: 20px auto;
+        width: 464px;
+        height: 61.81px;
+        background: #FFFFFF;
+        border: 1px solid rgba(27, 31, 56, 0.46);
+        box-sizing: border-box;
+        border-radius: 50px;
+        margin-bottom: 30px;
+        padding-left: 7%;
+        /* padding-right: 7%; */
+        font-size: 24px;
+        transition: ease-in border .4s, ease-in color .4s;
+    }
+    
+    .custom-input::placeholder {
+        /* padding-left: 0%; */
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 24px;
+        line-height: 28px;
+        color: rgba(27, 31, 56, 0.72);
+    }
+    
+    .custom-input:hover::placeholder {
+        color: #3D9276;
+    }
+    
+    .custom-input:focus {
+        border: 2px solid rgba(22, 37, 67, 0.70);
+    }
+    
+    .custom-btn {
+        text-align: center;
+        background: #162543;
+        border: 1px solid #1B1F38;
+        box-sizing: border-box;
+        border-radius: 50px;
+        width: 464px;
+        height: 61.81px;
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 30px;
+        line-height: 35px;
+        color: #FFFFFF;
+        transition: all ease-in .4s;
+    }
+    
+    .custom-btn:hover {
+        color: #3D9276;
+    }
+    /* progress circles */
+    
+    .progress-circle {
+        padding: 5px 15px 5px;
+        background: #ffffff;
+        /* box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); */
+        border-radius: 360px;
+    }
+    
+    .progress-circle-active {
+        padding: 6px 8px 6px;
+        background: #3D9276;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 4px 4px rgba(255, 255, 255, 0.30);
+        border-radius: 360px;
+    }
+    /* spacing */
+    
+    .no-padding {
+        padding: 0;
+    }
+    
+    .no-margin {
+        margin: 0;
+    }
+    
+    .webpage-spacing {
+        padding-right: 120px;
+        padding-left: 120px;
+    }
+    /* switches */
+    
+    .off {
+        display: none;
+    }
+    
+    .on {
+        display: block;
+    }
+    /* mobile queries */
+    
+    @media (max-width: 1024px) {
+        .left-container {
+            margin-top: 80%;
+        }
+        .right-container {
+            margin-top: 70%;
+        }
+        .custom-input {
+            width: 100%;
+        }
+        .custom-btn {
+            width: 100%;
+        }
+    }
+    
+    @media (max-width: 768px) {
+        .left-container {
+            margin-top: 50%;
+        }
+        .right-container {
+            margin-top: 50%;
+        }
+        .custom-input {
+            width: 100%;
+        }
+        .custom-btn {
+            width: 100%;
+        }
+    }
+    
+    @media (max-width: 360px) {
+        .custom-input {
+            width: 100%;
+        }
+        .custom-btn {
+            width: 100%;
+        }
+    }
+    
+    @media (max-width: 375px) {
+        .custom-input {
+            width: 100%;
+        }
+        .custom-btn {
+            width: 100%;
+        }
+    }
