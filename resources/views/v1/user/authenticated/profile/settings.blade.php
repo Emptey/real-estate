@@ -31,21 +31,33 @@
                         <div class="col-md-12 col-lg-12 col-sm-12 no-padding text-left">
                             <h2 class="box-title-2 mt-4">Change password</h2>
 
-                            <div class="form-group">
-                                <input type="password" name="password" id="password" placeholder="Current password" class="custom-input-2 mt-4" />
-                            </div>
+                            <form action="{{ route('post-user-settings') }}" method="post">
+                                @csrf
+                                <div class="form-group">
+                                    <input type="password" name="password" id="password" placeholder="Current password" class="custom-input-2 mt-4 @error('password') mb-2  @enderror" required="yes"/>
+                                    @error('password')
+                                        <span class="text-left text-danger on">{{ $message }}</span>
+                                    @enderror
+                                </div>
 
-                            <div class="form-group">
-                                <input type="password" name="new_password" id="new_password" placeholder="New password" class="custom-input-2 mt-3" />
-                            </div>
+                                <div class="form-group">
+                                    <input type="password" name="new_password" id="new_password" placeholder="New password" class="custom-input-2 mt-3 @error('new_password') mb-2  @enderror" required="yes" />
+                                    @error('new_password')
+                                        <span class="text-left text-danger on">{{ $message }}</span>
+                                    @enderror
+                                </div>
 
-                            <div class="form-group">
-                                <input type="password" name="confirm_new_password" id="confirm_new_password" placeholder="Confirm password" class="custom-input-2 mt-3" />
-                            </div>
+                                <div class="form-group">
+                                    <input type="password" name="new_password_confirmation" id="new_password_confirmation" placeholder="Confirm password" class="custom-input-2 mt-3 @error('new_password_confirmation') mb-2  @enderror" required="yes" />
+                                    @error('new_password_confirmation')
+                                        <span class="text-danger text-left on">{{ $message }}</span>
+                                    @enderror
+                                </div>
 
-                            <div class="form-group">
-                                <button type="submit" class="btn custom-btn-2">Change</button>
-                            </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn custom-btn-2">Change</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>

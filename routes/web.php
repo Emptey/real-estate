@@ -116,6 +116,16 @@ Route::group(['prefix' => 'logged-in', 'middleware' => 'user_authentication'], f
     ]);
 
     // post settings
+    Route::post('settings/', [
+        'as' => 'post-user-settings',
+        'uses' => 'UserProfileController@post_settings',
+    ]);
+
+    // delete account
+    Route::get('settings/delete-account/', [
+        'as' => 'delete-user-account',
+        'uses' => 'UserProfileController@delete_user_account',
+    ]);
 
     // portfolio
     Route::get('portfolio/', [

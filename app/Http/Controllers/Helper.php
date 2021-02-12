@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\UserActivity;
 use App\Notification;
+use App\Gender;
 
 class Helper extends Controller
 {
@@ -138,6 +139,33 @@ class Helper extends Controller
             return false;
 
         }
+    }
+
+    // gender avatar function
+    public function gender_avatar () {
+        // setup avatars
+        $female_avatar = 'user_female.png';
+        $male_avatar = 'user_male.png';
+
+        // check user gender
+        $gender = Gender::where('id', \Auth::user()->gender_id);
+
+        // check if gender exit
+        if ($gender->count() > 0) {
+            // gender exit - check gender type
+            if ($gender->pluck('gender')->first() == 'female') {
+                // gender = female - return avar
+                return $female_avatar;
+
+            } else if ($gender->pluck('gender')->first() == 'male') {
+                // gender = male - return avatar
+                return $male_avatar;
+            }
+
+        } else {
+            // gender doesn't exit retrun default
+        }
+
     }
 
 }

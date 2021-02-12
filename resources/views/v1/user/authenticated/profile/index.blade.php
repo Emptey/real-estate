@@ -6,7 +6,7 @@
    <div class="row">
        <div class="col-md-6 col-lg-6 col-sm-12">
             <div class="small-box">
-                <img src="{{ asset('assets/img/user_female.png') }}" alt="user-avatar" class="img img-responsive user-img mb-3" title="avatar" />
+                <img src="{{ asset('assets/img/'.app('App\Http\Controllers\Helper')->gender_avatar()) }}" alt="user-avatar" class="img img-responsive user-img mb-3" title="avatar" />
                 <h3 class="profile-header text-left mt-4 mb-5">Profile 
                     <a href="#" class="float-right box-nav">
                         <span class="iconify icon" data-icon="la:user-edit" data-inline="false"></span>
@@ -74,13 +74,15 @@
                         <div class="small-box">
                             <h2 class="profile-header mb-5">Recent activity</h2>
 
-                            <div class="text-underline">
+                           
                                 @if(!is_null($activity))
                                     @foreach($activity as $activities)
-                                    <p class="profile-text mt-4">
-                                        <span class="iconify text-success mr-4" data-icon="akar-icons:plus" data-inline="false"></span>   
-                                        {{ ucfirst($activities->activity) }}
-                                    </p>
+                                    <div class="text-underline">
+                                        <p class="profile-text mt-4">
+                                            <span class="iconify text-success mr-4" data-icon="akar-icons:plus" data-inline="false"></span>   
+                                            {{ ucfirst($activities->activity) }}
+                                        </p>
+                                    </div>
                                     @endforeach
                                 @else 
                                     <p class="text-danger profile-text">
@@ -88,7 +90,7 @@
                                     </p>
                                 @endif
                                
-                            </div>
+                            
 
                         </div>
                         
