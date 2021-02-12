@@ -43,6 +43,10 @@ Route::group(['prefix' => 'auth'], function(){
     ]);
 
     // post 2fa
+    Route::post('login/2fa/', [
+        'as' => 'post-user-two-fa',
+        'uses' => 'userDefaultPagesController@post_two_fa',
+    ]);
 
     // register route
     Route::get('register/', [
@@ -75,6 +79,70 @@ Route::group(['prefix' => 'auth'], function(){
     ]);
 
     // post register step three
+    Route::post('register/step/three', [
+        'as' => 'post-user-register-three',
+        'uses' => 'UserDefaultPagesController@post_register_step_three'
+    ]);
+
+    // logout
+    Route::get('logout/', [
+        'as' => 'get-user-logout',
+        'uses' => 'UserDefaultPagesController@user_logout',
+    ]);
+});
+
+// user authenticated routes
+Route::group(['prefix' => 'logged-in', 'middleware' => 'user_authentication'], function () {
+    // get index/dashboard
+    Route::get('dashboard/', [
+        'as' => 'get-user-dashboard',
+        'uses' => 'UserDashboardController@index',
+    ]);
+
+    // get profile
+    Route::get('profile/', [
+        'as' => 'get-user-profile',
+        'uses' => 'UserProfileController@index',
+    ]);
+
+    // edit profile
+
+    // post edit profile
+
+    // settings
+    Route::get('settings/', [
+        'as' => 'get-user-settings',
+        'uses' => 'UserProfileController@settings',
+    ]);
+
+    // post settings
+
+    // portfolio
+    Route::get('portfolio/', [
+        'as' => 'get-user-portfolio',
+        'uses' => 'UserPortfolioController@index',
+    ]);
+
+    // view portfolio investment
+
+    // transactions
+    Route::group(['prefix' => 'transactions'], function(){
+        // index
+        Route::get('/', [
+            'as' => 'get-user-transaction',
+            'uses' => 'UserTransactionController@index',
+        ]);
+    });
+
+    // notification route
+    Route::get('notification/', [
+        'as'   => 'get-user-notification',
+        'uses' => 'UserNotificationController@index',
+    ]);
+
+    
+
+
 });
 
 // admin auth group 

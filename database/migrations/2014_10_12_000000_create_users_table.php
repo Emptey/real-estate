@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('full_name');
             $table->string('email')->unique();
+            $table->string('phone', 11);
             $table->date('dob')->nullable();
             $table->unsignedBigInteger('gender_id');
             $table->foreign('gender_id')->references('id')->on('genders')->cascade('delete');

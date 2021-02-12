@@ -41,14 +41,22 @@
                                 Login
                             </h3>
 
-                            <form action="" method="post">
+                            <form action="{{ route('post-user-login') }}" method="post" class="custom-form">
                                 @csrf
                                 <div class="form-group">
-                                    <input type="email" name="email" id="email" autocomplete="off" placeholder="Email" class="form-control form-control custom-input" />
+                                    <input type="email" name="email" id="email" autocomplete="off" placeholder="Email" class="form-control form-control custom-input @error('email') mb-2  @enderror" />
+                                    @error('email')
+                                        <span class="text-white mb-4">{{ $message }}</span>
+                                    @enderror
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="password" name="password" id="password" autocomplete="off" placeholder="Password" class="form-control form-control custom-input" />
+                                    <input type="password" name="password" id="password" autocomplete="off" placeholder="Password" class="form-control form-control custom-input @error('password') mb-2  @enderror" />
+                                    @error('password')
+                                        <span class="text-white mb-5">
+                                            {{ $message }}
+                                        </span>
+                                    @enderror
                                 </div>
 
                                 <div class="form-group">

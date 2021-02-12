@@ -41,11 +41,14 @@
                                 2 FA
                             </h3>
 
-                            <form action="" method="post">
+                            <form action="{{ route('post-user-two-fa') }}" method="post">
                                 @csrf
 
                                 <div class="form-group">
-                                    <input type="text" name="pin" id="pin" autocomplete="off" placeholder="Pin" class="form-control form-control custom-input" />
+                                    <input type="nuber" name="pin" id="pin" autocomplete="off" placeholder="Pin" class="form-control form-control custom-input @error('pin') mb-2  @enderror" />
+                                    @error('pin')
+                                        <span class="text-white">{{ $message }}</span>
+                                    @enderror
                                 </div>
 
                                 <div class="form-group">

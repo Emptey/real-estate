@@ -45,18 +45,32 @@
                             <form action="{{ route('post-user-register-step-two') }}" method="post">
                                 @csrf
                                 <div class="form-group">
-                                    <input type="text" name="fname" id="fname" autocomplete="off" placeholder="Full name" class="form-control form-control custom-input" />
+                                    <input type="text" name="fname" id="fname" autocomplete="off" placeholder="Full name" class="form-control form-control custom-input @error('fname') mb-2 @enderror" />
+                                    @error('fname')
+                                        <span class="text-white">{{ $message }}</span>
+                                    @enderror
                                 </div>
 
                                 <div class="form-group">
-                                    <select name="gender" id="gender" class="form-control form-control custom-input">
-                                        <option value="#">Female</option>
-                                        <option value="#">Male</option>
+                                    <select name="gender" id="gender" class="form-control form-control custom-input @error('gender') mb-2 @enderror">
+                                       @foreach($gender as $genders)
+                                            <option value="{!! $genders->id !!}">{!! strtolower($genders->gender) !!}</option>
+                                       @endforeach
                                     </select>
+                                    @error('gender')
+                                        <span class="text-white">
+                                            {{ $message }}
+                                        </span>
+                                    @enderror
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="date" name="dob" id="dob" autocomplete="off" placeholder="Date of birth" class="form-control form-control custom-input" />
+                                    <input type="date" name="dob" id="dob" autocomplete="off" placeholder="Date of birth" class="form-control form-control custom-input @error('dob') mb-2 @enderror" />
+                                    @error('dob')
+                                        <span class="text">
+                                            {{ $message }}
+                                        </span>
+                                    @enderror
                                 </div>
 
                                 <div class="form-group">

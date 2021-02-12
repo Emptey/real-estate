@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\UserActivity;
+use App\Notification;
 
 class Helper extends Controller
 {
@@ -111,6 +112,32 @@ class Helper extends Controller
     public function next_rent_calculation() {
         $next_payment_date = date('Y-m-d', strtotime('+ 360 days'));
         return $next_payment_date;
+    }
+
+    // send notification
+    public function send_notification ($title = 'Welcome', $message = 'Welcome to Eminence global properties. Feel free to contact us at anytime, we\'re here to serve you always.' ) {
+        // create notification instance
+        $notification = new Notification();
+
+        // assign notification values
+        $notification->user_id = \Auth::user()->id;
+        $notification->title = $title;
+        $notification->message = $message;
+        $notification->is_active = 1;
+
+        // save notification
+        $save = $notification->save();
+
+        // check if notification was saved
+        if ($save) {
+            // notification saved - return true
+            return true;
+
+        } else {
+            // notification sending failed - return false;
+            return false;
+
+        }
     }
 
 }

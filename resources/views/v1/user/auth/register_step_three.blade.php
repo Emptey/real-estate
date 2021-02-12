@@ -45,15 +45,27 @@
                             <form action="" method="post">
                                 @csrf
                                 <div class="form-group">
-                                    <input type="text" name="country" id="country" autocomplete="off" placeholder="Country" class="form-control form-control custom-input" />
+                                    <input type="text" name="country" id="country" autocomplete="off" placeholder="Country" class="form-control form-control custom-input @error('country') mb-2 @enderror" 
+                                        value="{{ Request::old('country') }}" />
+                                    @error('country')
+                                        <span class="text-white">{{ $message }}</span>
+                                    @enderror
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="text" name="state" id="state" autocomplete="off" placeholder="State" class="form-control form-control custom-input" />
+                                    <input type="text" name="state" id="state" autocomplete="off" placeholder="State" class="form-control form-control custom-input @error('state') mb-2 @enderror" 
+                                        value="{{ Request::old('state') }}" />
+                                    @error('state')
+                                        <span class="text-white">{{ $message }}</span>
+                                    @enderror
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="text" name="address" id="address" autocomplete="off" placeholder="Address" class="form-control form-control custom-input" />
+                                    <input type="text" name="address" id="address" autocomplete="off" placeholder="Address" class="form-control form-control custom-input @error('address') mb-2 @enderror" 
+                                        value="{{ Request::old('address') }}" />
+                                    @error('address')
+                                        <span class="text-white">{{ $message }}</span>
+                                    @enderror
                                 </div>
 
                                 <div class="form-group">
