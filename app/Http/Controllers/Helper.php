@@ -168,4 +168,15 @@ class Helper extends Controller
 
     }
 
+    // get user investment status
+    public function get_user_investment_status ($investment) {
+        if ($investment->investment->is_filled === 0) {
+            return 'inactive';
+        } else if ($investment->investment->is_filled === 1 && $investment->investment->is_complete === 0) {
+            return 'active';
+        } else if ($investment->investment->is_complete === 1) {
+            return 'completed';
+        }
+    }
+
 }

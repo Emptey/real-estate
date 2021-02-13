@@ -147,7 +147,17 @@ Route::group(['prefix' => 'logged-in', 'middleware' => 'user_authentication'], f
         'uses' => 'UserPortfolioController@index',
     ]);
 
+    // portfolio search
+    Route::post('portfolio/', [
+        'as' => 'post-user-portfolio',
+        'uses' => 'UserPortfolioController@search_portfolio',
+    ]);
+
     // view portfolio investment
+    Route::get('portfolio/view/{id}', [
+        'as' => 'get-user-portfolio-investment',
+        'uses' => 'UserPortfolioController@get_investment_portfolio',
+    ]);
 
     // transactions
     Route::group(['prefix' => 'transactions'], function(){

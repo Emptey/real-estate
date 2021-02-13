@@ -3,7 +3,7 @@
     <a class="navbar-brand" href="#">Navbar</a>
 
     <div class="user-initial align-baseline">
-        P
+        {{ ucfirst(substr(\Auth::user()->full_name, 0, 1)) }}
     </div>
 
     <nav class="nav flex-column">
@@ -15,7 +15,7 @@
                 <span class="iconify menu-icon" data-icon="bx:bx-user" data-inline="false"></span>
                 Profile 
             </a>
-            <a class="auth-links  {{ Route::is('get-user-portfolio') ? 'active' : '' }}" href="{{ route('get-user-portfolio') }}"> 
+            <a class="auth-links  {{ Route::is('get-user-portfolio') || Route::is('post-user-portfolio') || Route::is('get-user-portfolio-investment') ? 'active' : '' }}" href="{{ route('get-user-portfolio') }}"> 
                 <span class="iconify menu-icon" data-icon="la:suitcase" data-inline="false"></span>
                 Portfolio
             </a>

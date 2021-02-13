@@ -13,8 +13,8 @@
     }
     /* page loader */
     /* * {
-        font-size: 18pt !important;
-    } */
+font-size: 18pt !important;
+} */
     
     .progress {
         position: fixed;
@@ -96,7 +96,7 @@
     
     a.nav-link.active {
         /* animation-name: fadeInNav;
-        animation-timing-function: ease-in; */
+animation-timing-function: ease-in; */
         border: 5px solid #fff;
         /* filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.25)); */
         border-radius: 50px;
@@ -641,6 +641,37 @@
         padding-top: 0.9%;
     }
     
+    .protfolio-img {
+        /* position: absolute; */
+        width: 100%;
+        height: 250px;
+        border-radius: 35px;
+    }
+    
+    .portfolio-title {
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 30px;
+        line-height: 37px;
+        /* identical to box height */
+        color: #373D3F;
+    }
+    
+    .portfolio-detail-icon {
+        margin-left: 5%;
+    }
+    
+    .portfolio-text {
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 30px;
+        line-height: 37px;
+        /* identical to box height */
+        color: #373D3F;
+    }
+    
     .portfolio-search-box>input {
         border: 0;
         outline: 0;
@@ -679,6 +710,11 @@
         /* identical to box height */
         color: #373D3F;
         text-align: left;
+        transition: ease-in color .4s;
+    }
+    
+    .small-box:hover>.table-responsive>table>thead>tr>th {
+        color: #3D9276;
     }
     
     .table-responsive>table>tbody>tr>td {
@@ -723,6 +759,10 @@
         background: transparent;
         border: 0;
         outline: none;
+    }
+    
+    .portfolio-search-box>input:focus+.btn-transparent>.search-icon {
+        color: #3D9276 !important;
     }
     
     .btn-transparent:focus {
@@ -780,4 +820,23 @@
         line-height: 37px;
         color: #000000;
         width: 80%;
+    }
+    /* pagination */
+    
+    .page-item.active .page-link {
+        z-index: 3;
+        color: #fff;
+        background-color: #3D9276;
+        border-color: #3D9276;
+    }
+    
+    .page-link {
+        position: relative;
+        display: block;
+        padding: .5rem .75rem;
+        margin-left: -1px;
+        line-height: 1.25;
+        color: #3D9276;
+        background-color: #fff;
+        border: 1px solid #dee2e6;
     }
