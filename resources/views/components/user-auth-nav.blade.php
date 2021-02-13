@@ -11,7 +11,7 @@
                 <span class="iconify menu-icon" data-icon="codicon:home" data-inline="false"></span>
                 Dashboard
             </a>
-            <a class="auth-links {{ Route::is('get-user-profile') ? 'active' : '' }}" href="{{ route('get-user-profile') }}"> 
+            <a class="auth-links {{ Route::is('get-user-profile') || Route::is('get-edit-user-profile') ? 'active' : '' }}" href="{{ route('get-user-profile') }}"> 
                 <span class="iconify menu-icon" data-icon="bx:bx-user" data-inline="false"></span>
                 Profile 
             </a>

@@ -428,7 +428,7 @@
         border: 1px solid #3D9276;
         box-sizing: border-box;
         border-radius: 50px;
-        width: 464px;
+        width: 40%;
         height: 61.81px;
         font-family: Montserrat;
         font-style: normal;
@@ -625,7 +625,7 @@
     }
     
     .text-underline {
-        border-bottom: 1px solid rgba(142, 150, 153, 0.6);
+        border-bottom: 1px solid rgba(142, 150, 153, 0.25);
         /* padding-bottom: 0.5%; */
         margin-bottom: 5%;
     }

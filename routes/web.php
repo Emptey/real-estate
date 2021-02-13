@@ -106,8 +106,22 @@ Route::group(['prefix' => 'logged-in', 'middleware' => 'user_authentication'], f
     ]);
 
     // edit profile
+    Route::get('profile/edit', [
+        'as' => 'get-edit-user-profile',
+        'uses' => 'UserProfileController@edit_profile'
+    ]);
 
-    // post edit profile
+    // post edit profile personal
+    Route::post('profile/edit/personal', [
+        'as' => 'post-edit-user-profile-personal',
+        'uses' => 'UserProfileController@post_edit_profile_personal',
+    ]);
+
+    // post edit profile bank 
+    Route::post('profile/edit/bank', [
+        'as' => 'post-edit-user-profile-bank',
+        'uses' => 'UserProfileController@post_edit_profile_bank',
+    ]);
 
     // settings
     Route::get('settings/', [

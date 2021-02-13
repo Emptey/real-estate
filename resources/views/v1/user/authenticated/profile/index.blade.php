@@ -8,7 +8,7 @@
             <div class="small-box">
                 <img src="{{ asset('assets/img/'.app('App\Http\Controllers\Helper')->gender_avatar()) }}" alt="user-avatar" class="img img-responsive user-img mb-3" title="avatar" />
                 <h3 class="profile-header text-left mt-4 mb-5">Profile 
-                    <a href="#" class="float-right box-nav">
+                    <a href="{{ route('get-edit-user-profile') }}" class="float-right box-nav">
                         <span class="iconify icon" data-icon="la:user-edit" data-inline="false"></span>
                     </a> 
                 </h3>
@@ -26,7 +26,7 @@
 
                 <div class="text-underline">
                     <p class="profile-text mt-4">
-                        {!! \Auth::user()->phone !!}
+                        {!! !empty(\Auth::user()->phone) ? \Auth::user()->phone : '<span class="text-danger">unavailable</span>' !!}
                     </p>
                 </div>
 
@@ -43,7 +43,7 @@
                     <div class="col-md-12 col-lg-12 col-sm-12">
                         <div class="small-box">
                             <h2 class="profile-header mb-5">My bank 
-                                <a href="#" class="float-right box-nav">
+                                <a href="{{ route('get-edit-user-profile') }}" class="float-right box-nav">
                                 <!-- <span class="iconify" data-icon="bx:bx-pencil" data-inline="false"></span> -->
                                 <span class="iconify icon" data-icon="cil:pencil" data-inline="false"></span>
                                 </a>
@@ -51,19 +51,19 @@
 
                             <div class="text-underline">
                                 <p class="profile-text mt-4">
-                                    {!! !is_null(\Auth::user()->user_bank()->pluck('account_name')->first()) ? ucwords(\Auth::user()->user_bank()->plcuk('account_name')->first()) : '<span class="text-danger">unavailable</span>' !!}
+                                    {!! !is_null(\Auth::user()->user_bank()->pluck('account_name')->first()) ? ucwords(\Auth::user()->user_bank()->pluck('account_name')->first()) : '<span class="text-danger">unavailable</span>' !!}
                                 </p>
                             </div>
 
                             <div class="text-underline">
                                 <p class="profile-text mt-4">
-                                    {!! !is_null(\Auth::user()->user_bank()->pluck('account_number')->first()) ? ucwords(\Auth::user()->user_bank()->plcuk('account_number')->first()) : '<span class="text-danger">unavailable</span>' !!}
+                                    {!! !is_null(\Auth::user()->user_bank()->pluck('account_number')->first()) ? ucwords(\Auth::user()->user_bank()->pluck('account_number')->first()) : '<span class="text-danger">unavailable</span>' !!}
                                 </p>
                             </div>
 
                             <div class="text-underline">
                                 <p class="profile-text mt-4">
-                                    {!! !is_null(\Auth::user()->user_bank()->pluck('bank')->first()) ? ucwords(\Auth::user()->user_bank()->plcuk('bank')->first()) : '<span class="text-danger">unavailable</span>' !!}
+                                    {!! !is_null(\Auth::user()->user_bank()->pluck('bank')->first()) ? ucwords(\Auth::user()->user_bank()->pluck('bank')->first()) : '<span class="text-danger">unavailable</span>' !!}
                                 </p>
                             </div>
                         </div>

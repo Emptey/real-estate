@@ -10,7 +10,7 @@
                     <div class="row text-underline mb-1 pb-3">
                         <div class="col-md-8 col-lg-8 col-sm-12 no-padding">
                             <div class="text-left ">
-                                <img src="{{ asset('assets/img/user_female.png') }}" alt="avatar" class="img img-responsive del-account-img" title="avatar" />
+                                <img src="{{ asset('assets/img/'.app('App\Http\Controllers\Helper')->gender_avatar()) }}" alt="avatar" class="img img-responsive del-account-img" title="avatar" />
                                 <p class="profile-text  mt-5">Jhene Aiko</p>
                                 <p class="profile-text mt-4">jheneaiko@gmail.com</p>
                                 <p class="profile-text mt-5">
