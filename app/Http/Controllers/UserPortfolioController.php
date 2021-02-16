@@ -13,7 +13,7 @@ class UserPortfolioController extends Controller
     // index
     public function index (Request $request) {
         // get all user investment
-        $all_user_investment = UserInvestment::where('user_id', \Auth::user()->id)->orderBy('id', 'desc')->paginate(4);
+        $all_user_investment = UserInvestment::where('user_id', \Auth::user()->id)->orderBy('id', 'desc')->paginate(10);
         // get user investments
         $user_investment = UserInvestment::where('user_id', \Auth::user()->id)->get();
 
@@ -41,7 +41,9 @@ class UserPortfolioController extends Controller
         // get user investments
         $user_investment = UserInvestment::where('user_id', \Auth::user()->id)->get();
 
-        // return $user_investment;
+        // record activity
+        $activity = 'Conducted portfolio search.';
+        app('App\Http\Controllers\Helper')->user_activity($activity);
 
         // check if record exist
         if ($user_investment->count() > 0) {

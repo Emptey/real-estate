@@ -3,7 +3,7 @@
     <a class="navbar-brand" href="#">Navbar</a>
 
     <div class="user-initial align-baseline">
-        {{ ucfirst(substr(\Auth::user()->full_name, 0, 1)) }}
+        {{ !is_null(\Auth::user()) ? ucfirst(substr(\Auth::user()->full_name, 0, 1)) : '' }}
     </div>
 
     <nav class="nav flex-column">
@@ -19,7 +19,7 @@
                 <span class="iconify menu-icon" data-icon="la:suitcase" data-inline="false"></span>
                 Portfolio
             </a>
-            <a class="auth-links {{ Route::is('get-user-transaction') ? 'active' : '' }} " href="{{ route('get-user-transaction') }}"> 
+            <a class="auth-links {{ Route::is('get-user-transaction') || Route::is('search-user-transaction') ? 'active' : '' }} " href="{{ route('get-user-transaction') }}"> 
                 <span class="iconify menu-icon" data-icon="si-glyph:time-reload" data-inline="false"></span>
                 Transactions
             </a>

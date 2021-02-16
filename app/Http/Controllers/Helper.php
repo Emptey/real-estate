@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\UserActivity;
 use App\Notification;
 use App\Gender;
+use App\UserInvestment;
+use App\RentPayout;
+use App\SellOffPayout;
 
 class Helper extends Controller
 {
@@ -176,6 +179,90 @@ class Helper extends Controller
             return 'active';
         } else if ($investment->investment->is_complete === 1) {
             return 'completed';
+        }
+    }
+
+    // get user notification colouration
+    public function getNotificationColor ($notification) {
+        // check if notification is read
+        if ($notification->is_read) {
+            // notification read
+            return 'notification-header';
+        } else {
+            // notification not read - generate random color
+            $random_number = mt_rand(1,3);
+            return 'notification-header-'.$random_number;
+        }
+    }
+
+    // gets user investment outgoing transaction count
+    public function get_user_investment_transaction_count ($user_id) {
+        // get user investment record count
+        $user_investment = UserInvestment::where('user_id', $user_id)->count();
+
+        // check if records exist
+        if ($user_investment > 0) {
+            // record exist - return user investment count
+            return $user_investment;
+        } else {
+            // record doesn't exist - return 0 as value
+            return 0;
+
+        }
+    }
+
+    // gets user sell off payout transaction count
+    public function get_user_sell_off_transaction_count ($user_id) {
+        // get user sell off payout record
+        $user_record = SellOffPayout::where('user_id', $user_id)->count();
+
+        // cehck if record was found
+        if ($user_record > 0) {
+            // record exit - return count value
+            return $user_record;
+        } else {
+            // record doesn't exist - return 0 as count value.
+            return 0;
+        }
+    }
+
+    // gets user rent  transaction count 
+    public function  get_user_rent_payout_transaction_count ($user_id) {
+        // get user rent payout record
+        $user_record = RentPayout::where('user_id', $user_id)->count();
+
+        // cehc if record exist
+        if ($user_record > 0) {
+            // record exist - return count value
+            return $user_record;
+        } else {
+            // record doesn't exist - return 0 as count value
+            return 0;
+        }
+    }
+
+    // sums two values
+    public function sum_numbers () {
+        $num1 = $this->get_user_rent_payout_transaction_count(\Auth::user()->id);
+        $num2 = $this->get_user_sell_off_transaction_count(\Auth::user()->id);
+
+        $sum = $num1 + $num2;
+
+        return $sum;
+    }
+
+    // gets user failed transactions
+    public function get_user_failed_transactions ($user_id) {
+        $user_record = UserInvestment::where('user_id', $user_id)
+                        ->where('is_paid', 0)->count();
+
+        // check if record exist
+        if ($user_record > 0) {
+            // record exist - return count value
+            return $user_record;
+        } else {
+            // record doesn't exist - return 0 as count
+            return 0;
         }
     }
 

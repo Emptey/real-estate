@@ -60,6 +60,10 @@ class UserProfileController extends Controller
                     'alert-type' => 'success',
                 ];
 
+                // record activity
+                $activity = 'Updated personal info.';
+                app('App\Http\Controllers\Helper')->user_activity($activity);
+
                 return redirect()
                         ->route('get-user-profile')
                         ->with($notification);
@@ -211,7 +215,7 @@ class UserProfileController extends Controller
                 // check if record was update
                 if ($user_update) {
                     // update successsful - record activity - notify user
-                    app('App\Http\Controllers\Helper')->user_activity('changed password');
+                    app('App\Http\Controllers\Helper')->user_activity('Changed password');
 
                     $notification = [
                         'message' => 'Password changed successfully.',

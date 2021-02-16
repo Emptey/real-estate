@@ -166,6 +166,12 @@ Route::group(['prefix' => 'logged-in', 'middleware' => 'user_authentication'], f
             'as' => 'get-user-transaction',
             'uses' => 'UserTransactionController@index',
         ]);
+
+        // search transacction
+        Route::post('/', [
+            'as' => 'search-user-transaction',
+            'uses' => 'UserTransactionController@search_transaction',
+        ]);
     });
 
     // notification route

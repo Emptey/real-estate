@@ -38,9 +38,9 @@
                 <div class="row">
                     <div class="col-md-10 col-lg-10 col-sm-12 offset-md-1 offset-lg-1offset-sm-1 text-center">
                         <div class="right-container">
-                        <span class="iconify icon" data-icon="feather:user-plus" data-inline="false"></span>
+                            <span class="iconify icon" data-icon="feather:user-plus" data-inline="false"></span>
 
-                            <h3 class="heading">
+                            <h3 class="heading mt-4 mb-5">
                                 Register
                             </h3>
 
@@ -49,6 +49,13 @@
                                 <div class="form-group">
                                     <input type="email" name="email" id="email" autocomplete="off" placeholder="Email" class="form-control form-control custom-input @error('email') mb-2 @enderror" />
                                     @error('email')
+                                        <span class="text-white">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="number" name="phone" id="phone" autocomplete="off" placeholder="Phone" class="form-control form-control custom-input @error('phone') mb-2 @enderror" />
+                                    @error('phone')
                                         <span class="text-white">{{ $message }}</span>
                                     @enderror
                                 </div>

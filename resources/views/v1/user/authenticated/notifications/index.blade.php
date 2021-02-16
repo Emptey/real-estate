@@ -3,18 +3,28 @@
 @section('title', 'notification')
 
 @section('content')
-   @for($i = 1; $i <= 5; $i++)
-   <div class="row">
+  @if(!is_null($notification))
+    @foreach($notification as $notifications)
+    <div class="row">
         <div class="col-md-12 col-lg-12 col-sm-12">
-            <div class="small-box mb-5">
+            <div class="small-box mb-5 p-5">
                 <div class="text-left">
-                    <h4 class="notification-header">Title</h4>
+                    <h4 class="{{ app('App\Http\Controllers\Helper')->getNotificationColor($notifications) }}">{{ ucfirst($notifications->title) }}</h4>
                     <p class="notification-text">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo expedita eligendi nihil praesentium! Ipsam vel libero esse, aliquam deserunt error veritatis quidem asperiores nam mollitia eos dignissimos. Earum, reiciendis fugit.
+                        {{ ucfirst($notifications->message) }}
                     </p>
                 </div>
             </div>
         </div>
     </div>
-   @endfor
+    @endforeach
+  @else
+    <div class="row">
+        <div class="col-md-12 col-lg-12 col-sm-12 text-center">
+            <p class="notification-text text-danger">
+                There are no notifications available.
+            </p>
+        </div>
+    </div>
+  @endif
 @endsection

@@ -11,8 +11,8 @@
                         <div class="col-md-8 col-lg-8 col-sm-12 no-padding">
                             <div class="text-left ">
                                 <img src="{{ asset('assets/img/'.app('App\Http\Controllers\Helper')->gender_avatar()) }}" alt="avatar" class="img img-responsive del-account-img" title="avatar" />
-                                <p class="profile-text  mt-5">Jhene Aiko</p>
-                                <p class="profile-text mt-4">jheneaiko@gmail.com</p>
+                                <p class="profile-text  mt-5">{{ ucwords(\Auth::user()->full_name) }}</p>
+                                <p class="profile-text mt-4">{{ \Auth::user()->email }}</p>
                                 <p class="profile-text mt-5">
                                     two factor authentication: 
                                     <span class="text-success">ON</span> 

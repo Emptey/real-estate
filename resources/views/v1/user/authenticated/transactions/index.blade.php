@@ -6,40 +6,26 @@
     <div class="row">
         <div class="col-md-4 col-lg-4 col-sm-12">
             <div class="small-box">
-                <h2 class="box-title-2">Status</h2>
+                <h2 class="box-title-2">Incoming</h2>
                 
-                <div class="text-left">
-                    <p class="text-success transaction-status">Incoming</p>
-                    <span class="incoming-loader"></span>
-                    <span class="loader-text">90</span>
-                </div>
-
-                <div class="text-left">
-                    <p class="text-danger transaction-status">Outgoing</p>
-                    <span class="outgoing-loader"></span>
-                    <span class="loader-text">50</span>
-                </div>
-
-                <div class="text-left">
-                    <p class="text-danger transaction-status">Failed</p>
-                    <span class="failed-loader"></span>
-                    <span class="loader-text">50</span>
-                </div>
+                <h2 class="box-title text-success">{{ $incoming }}</h2>
             </div>
         </div>
+
         <div class="col-md-4 col-lg-4 col-sm-12">
             <div class="small-box sibling">
-                <h2 class="box-title-2">Title</h2>
-                <h2 class="box-title">50</h2>
+                <h2 class="box-title-2">Outgoing</h2>
+                <h2 class="box-title text-warning">{{ $outgoing }}</h2>
             </div>
         </div>
+
+
         <div class="col-md-4 col-lg-4 col-sm-12">
             <div class="small-box sibling">
                 <h2 class="box-title-2">
-                    Title
+                    Failed
                 </h2>
-
-                <h2 class="box-title">22</h2>
+                <h2 class="box-title text-danger">{{ $failed_transactions }}</h2>
             </div>
         </div>
     </div>
@@ -47,44 +33,58 @@
     <div class="row">
         <div class="col-md-12 col-lg-12 col-sm-12">
             <div class="small-box">
-                <div class="form-group">
-                    <div class="portfolio-search-box">
-                        <input type="text" name="search" id="search" placeholder="Search" autocomplete="off" required="yes" />
-                        <button type="submit" class="btn-transparent">
-                            <span class="iconify search-icon" data-icon="ant-design:search-outlined" data-inline="false"></span>
-                        </button>
+                <form action="{{ route('search-user-transaction') }}" method="post">
+                    @csrf
+
+                    <div class="form-group">
+                        <div class="portfolio-search-box">
+                            <input type="text" name="search" id="search" placeholder="Search" autocomplete="off" required="yes" />
+                            <button type="submit" class="btn-transparent">
+                                <span class="iconify search-icon" data-icon="ant-design:search-outlined" data-inline="false"></span>
+                            </button>
+                        </div>
                     </div>
-                </div>
+                </form>
 
                 <div class="table-responsive mt-5">
                     <table class="table table-stripped table-hover">
                         <thead>
                             <tr>
+                                <td class="text-left">#</td>
                                 <th>Name</th>
-                                <th>Slot</th>
-                                <th>Return</th>
-                                <th>Status</th>
-                                <th class="text-center">Options</th>
+                                <th class="text-center">Slot</th>
+                                <th class="text-center">Sell off return</th>
+                                <th class="text-center">Payment</th>
+                                <th class="text-center">Date</th>
                             </tr>
                         </thead>
 
                         <tbody>
-                            @for($i = 1; $i <= 5; $i++)
-                            <tr class="text-left">
-                                <td>Jothan {{$i}}</td>
-                                <td>{{$i}}%</td>
-                                <td>{{$i * 2}}</td>
-                                <td>active</td>
-                                <td class="text-center">
-                                    <a href="#">
-                                        <span class="iconify icon" data-icon="fluent:clipboard-search-24-regular" data-inline="false"></span>
-                                    </a>
-                                </td>
-                            </tr>
-                            @endfor
+                           @if(!is_null($transactions))
+                            <?php $counter = 1; ?>
+                                @foreach($transactions as $transaction)
+                                    <tr>
+                                        <td>{{ $counter }}</td>
+                                        <td>{{ ucfirst($transaction->investment->property_listing->title) }}</td>
+                                        <td class="text-center"> {{ $transaction->purchased_slot }} </td>
+                                        <td class="text-center">{{ $transaction->investment->property_listing->sell_off_profit_percent }}%</td>
+                                        <td class="text-center"> {!! $transaction->is_paid ? '<span class="text-success">Successful</span>' : '<span class="text-danger">Failed</span>' !!} </td>
+                                        <td class="text-center">{{ substr($transaction->created_at, 0, 10) }}</td>
+                                    </tr>
+                                    <?php $counter +=1; ?>
+                                @endforeach
+                           @else
+                                <tr>
+                                    <td class="text-center text-danger" colspan="5">There are no transaction records available.</td>
+                                </tr>
+                           @endif
                         </tbody>
                     </table>
                 </div>
+
+                @if(!is_null($transactions))
+                    {{ $transactions->links() }}
+                @endif
             </div>
         </div>
     </div>
