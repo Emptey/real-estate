@@ -51,65 +51,135 @@ $(document).ready(function() {
         });
     });
 
-    var ctx = document.getElementById('myChart').getContext('2d');
-    var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-            datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-    });
+    // function to get user chart for investment rate
+    function get_user_chart_record(data, label) {
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: label,
+                datasets: [{
+                    label: '# of Investments',
+                    data: data,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgb(61, 146, 118)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgb(61, 146, 118)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+        });
+    }
 
+    function set_user_chart_record() {
+        var id = $('#active_id').val();
+        $.ajax({
+            url: '/api/investment-rate/' + id,
+            type: 'GET',
+            // headers: {
+            //     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+            // },
+            dataType: 'json',
+            success: function(data) {
+                // create array for data and label
+                var recieved_data = [];
+                var label = [];
 
-    var ctx = document.getElementById('myChart2').getContext('2d');
-    var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-            datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-    });
+                // check if data is empty
+                if (data.length == 0) {
+                    // display div with warning
+                    $('#warning').text('No investment data.');
+                } else {
+                    // loop through returned data
+                    for (var i in data) {
+                        label.push(i);
+                        recieved_data.push(data[i].length);
+                        // console.log(i + "  " + data[i].length);
+                    }
+                }
 
+                // pass data to chart
+                get_user_chart_record(recieved_data, label);
+            },
+            error: function(data) {
+                console.log(data);
+            }
+        });
+    }
+
+    set_user_chart_record();
+});
+
+$(document).ready(function() {
+    function getMyChart(data, label) {
+        var ctx = document.getElementById('myChart2').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: label,
+                datasets: [{
+                    label: '# return rate',
+                    data: data,
+                    backgroundColor: [
+                        'rgb(61, 146, 118)'
+                    ],
+                    borderColor: [
+                        'rgb(61, 146, 118)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+        });
+    }
+
+    function getMyChartData() {
+        var id = $('#active_id').val();
+        $.ajax({
+            url: '/api/rentage-rate/' + id,
+            type: 'GET',
+            // headers: {
+            //     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+            // },
+            dataType: 'json',
+            success: function(data) {
+                // create array for data and label
+                var recieved_data = [];
+                var label = [];
+
+                // check if data is empty
+                if (data.length == 0) {
+                    // display div with warning
+                    $('#warning').text('No investment data.');
+                } else {
+                    // loop through returned data
+                    for (var i in data) {
+                        label.push(i);
+                        recieved_data.push(data[i].length);
+                    }
+                }
+
+                // pass data to chart
+                getMyChart(recieved_data, label);
+            },
+            error: function(received_data) {
+                console.log(received_data);
+            }
+        });
+    }
+
+    getMyChartData()
 });
 
 $(document).ready(function() {
@@ -152,41 +222,73 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
-    var ct = document.getElementById('status').getContext('2d');
-    var overview = new Chart(ct, {
-        type: 'pie',
-        data: {
-            labels: ['Red', 'Blue', 'Yellow'],
-            datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1,
-            }]
-        },
-        options: {
-            legend: {
-                display: true,
-                position: 'bottom',
+    function get_pie_data(data, label) {
+        var ct = document.getElementById('status').getContext('2d');
+        var overview = new Chart(ct, {
+            type: 'pie',
+            data: {
+                labels: label,
+                datasets: [{
+                    label: '# of Votes',
+                    data: data,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1,
+                }]
             },
-        },
+            options: {
+                legend: {
+                    display: true,
+                    position: 'bottom',
+                },
+            },
 
-    });
+        });
+    }
+
+    function set_pie_data() {
+        var id = $('#active_id').val();
+
+        $.ajax({
+            url: '/api/investment-status/' + id,
+            type: 'GET',
+            dataType: 'json',
+            success: function(data) {
+                // initialize data and label array
+                var data_received = [];
+                var label = [];
+
+                // iterate throuhg recieved data
+                for (var i in data) {
+                    // push recieved data to arrays
+                    data_received.push(data[i]);
+                    label.push(i);
+                }
+
+                get_pie_data(data_received, label);
+            },
+            error: function(data) {
+                console.log(data);
+            }
+        });
+    }
+
+    set_pie_data();
+
 });
 
 

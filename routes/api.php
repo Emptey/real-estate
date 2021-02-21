@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +18,18 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('rentage-rate/{id}', [
+    'as' => 'get-user-rentage-rate',
+    'uses' => 'UserChartController@get_user_rentage_record',
+]);
+
+Route::get('investment-rate/{id}', [
+    'as' => 'get-user-investment-rate',
+    'uses' => 'UserChartController@get_user_investment_rate',
+]);
+
+Route::get('investment-status/{id}', [
+    'as' => 'get-user-investment-status',
+    'uses' => 'UserChartController@investment_status'
+]);

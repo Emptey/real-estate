@@ -52,7 +52,7 @@
     <div class="row">
         <div class="col-md-8 col-lg-8 col-sm-12">
             <div class="small-box">
-                <h2 class="box-title-2">Investment Rate</h2>
+                <h2 class="box-title-2">Investment rate</h2>
                 <canvas id="myChart" width="300" height="100"> </canvas> 
 
                 <!-- <script>
@@ -76,8 +76,10 @@
     <div class="row">
         <div class="col-md-12 col-lg-12 col-sm-12">
             <div class="small-box">
-                <h2 class="box-title-2">Investment pay rate</h2>
-                <canvas id="myChart2" width="300" height="100"> </canvas> 
+                <h2 class="box-title-2">Rentage return rate</h2>
+                <canvas id="myChart2" width="300" height="100"> </canvas>
+                <input type="hidden" name="active_id" id="active_id" value="{{ \Crypt::encrypt(\Auth::user()->id) }}"/>
+                <p class="text-center text-danger" id="warning"></p>
             </div>
         </div>
     </div>

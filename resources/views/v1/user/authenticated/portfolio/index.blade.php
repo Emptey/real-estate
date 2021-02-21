@@ -5,11 +5,12 @@
 @section('content')
     <div class="row">
         <div class="col-md-4 col-lg-4 col-sm-12">
+            <input type="hidden" name="active_id" id="active_id" value="{{ \Crypt::encrypt(\Auth::user()->id) }}"/>
             <div class="small-box">
                 <h2 class="box-title-2 mb-3">
                     Overview
                 </h2>
-                <canvas id="overview" width="300" height="200"> </canvas> 
+                <canvas id="status" width="300" height="200"> </canvas> 
             </div>
         </div>
         <div class="col-md-4 col-lg-4 col-sm-12">
